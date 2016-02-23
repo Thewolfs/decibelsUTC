@@ -1,0 +1,12 @@
+{% extends '::layout.html.twig' %}
+
+{% block title %}News : {{ entity.title }} - Décibels{% endblock %}
+
+{% block body -%}
+    <h2 class="text-center">{{ entity.title }}</h2>
+			{{ entity.text|raw }}<br />
+			<div class="text-right" style="min-widht: 100%;">Publiée le : {{ entity.date|date('Y-m-d') }} à {{ entity.date|date('H:i') }}</div>
+			{% for comment in entity.comments %}
+				{{ comment.author }} le {{ comment.date|date('Y-m-d') }} à {{ comment.date|date('H:i') }} : {{ comment.text }}
+			{% endfor %}
+{% endblock %}

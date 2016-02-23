@@ -1,0 +1,14 @@
+decibels_login:
+    path:     /decibels/login
+    defaults: { _controller: DecibelsMembreBundle:Default:login }
+    methods: [GET]
+
+decibels_login_check:
+    path:     /decibels/admin/logincheck
+    defaults: { _controller: DecibelsMembreBundle:Default:logincheck }
+    methods: [GET]
+
+decibels_logout:
+    path:     /decibels/logout
+    defaults: { _controller: DecibelsMembreBundle:Default:logout }
+    methods: [GET]

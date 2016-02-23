@@ -1,0 +1,30 @@
+security:
+    acl:
+        connection: default
+    session_fixation_strategy:  migrate
+
+    providers:
+        cas_provider:
+            id: cas.security.user.provider
+
+    role_hierarchy:
+        ROLE_MEMBRE: ROLE_USER
+        ROLE_ADMIN: [ROLE_MEMBRE, ROLE_USER]
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_MEMBRE, ROLE_USER, ROLE_ALLOWED_TO_SWITCH]
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt|error)|css|images|js)/
+            security: false
+
+        main:
+            pattern: ^/decibels/.*
+            stateless: false
+            anonymous: true
+            cas:
+                check_path: /decibels/admin/logincheck
+                login_path: /decibels/login
+
+    access_control:
+        - { path: ^/decibels/~, roles: IS_AUHTENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/~, roles: ROLE_ADMIN }

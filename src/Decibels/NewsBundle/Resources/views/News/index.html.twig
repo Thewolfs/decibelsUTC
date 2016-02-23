@@ -1,0 +1,125 @@
+{% extends '::layout.html.twig' %}
+
+{% block title %}Accueil - Décibels{% endblock %}
+
+{% block banniere %}
+	<div id="carrousel" class="col-md-12" style="width: 1000px; height: 450px; border: 1px solid #B6B6B6; box-sizing: content-box;">
+		<div id="left" style="z-index: 3; position: absolute; top: 195px; left: 3px; display: inline-block; border: 5px solid #FFEB3B; border-radius: 35px; height: 70px; width: 70px; text-align: center;"><span class="glyphicon glyphicon-chevron-left" style="position: relative; left: -3px; top: 5px; display: inline-block; color: #FFEB3B; font-size: 50px; height: 50px;"></span></div>
+		<div id="right" style="z-index: 3; position: absolute; top: 195px; right: 3px; display: inline-block; float: right; border: 5px solid #FFEB3B; border-radius: 35px; height: 70px; width: 70px; text-align: center;"><span class="glyphicon glyphicon-chevron-right" style="position: relative; left: 1px; top: 3px; display: inline-block; color: #FFEB3B; font-size: 50px; height: 50px;"></span></div> 
+		{% for img in listImg %}
+			<img src="{{ asset('design/img/carrousel/' ~ img.relativePathname) }}" alt="carrousel-{{ loop.index }}" width="100%" style="z-index: 2; position: absolute; top: -{{ clipArray[loop.index0] }}px; left: 0px; clip: rect({{ clipArray[loop.index0] }}px, 1200px, {{ clipArray[loop.index0] + 450}}px, 0px)"/>
+		{% endfor %}
+	</div>
+{% endblock %}	
+
+{% block body %}
+	<div style="margin-top: 10px;">
+	{% for entity in entities %}
+		<div style="padding: 5px; box-shadow: 0px 1px #591820;">
+			<h4 class="text-center" style="color: #591820; font-weight: bold;">{{ entity.title }}</h4>
+				{{ (entity.text|length > 255 ? entity.text|slice(0, 255) ~ '...' : entity.text)|raw  }}<br />
+				<div class="text-right" style="min-widht: 100%;">Publiée le : {{ entity.date|date('Y-m-d') }} à {{ entity.date|date('H:i') }}</div>
+				<a href="{{ path('decibels_news_show', { 'id': entity.id }) }}"><span class ='glyphicon glyphicon-chevron-right' style="top: 2px;"></span> Voir la news complète</a>
+		</div>
+	{% endfor %}
+	</div>
+{% endblock %}
+
+{% block javascript %}
+<script>
+	$().ready(function (){
+		$("#left").fadeOut(0);
+		$("#right").fadeOut(0);
+		
+		$("#carrousel").css("margin-left", ($("#carrousel").parent().width() - $("#carrousel").outerWidth())/2);
+		
+		$("#carrousel img").fadeOut(0);
+		var img = $("#carrousel img");
+		var indexImg = img.length - 1;
+		var i = 0;
+		var currentImg = img.eq(i);
+		currentImg.fadeIn();
+		
+		var icons = '<div style="position: absolute; bottom: 5px; right: 10px; z-index: 5;">';
+		for(j = 0; j <= indexImg; j++)
+		{
+			icons += '<span class="carrouselIcon"></span>'
+		}
+		icons += "</div>"
+		$("#carrousel").append(icons);
+
+		var icons = $('.carrouselIcon');
+		var currentIcon = icons.eq(i);
+		currentIcon.css("background-color", "#FFFFFF");
+		
+		$("#carrousel").hover(function() {
+			$("#left").fadeIn(700);
+			$("#right").fadeIn(700);
+		},
+		function() {
+			$("#left").fadeOut(700);
+			$("#right").fadeOut(700);
+		});
+		
+		$("#left").click(function(){
+			if(i > 0)
+			{
+				i = i-1
+			}
+			else
+			{
+				i = indexImg;
+			}
+			
+			currentImg.fadeOut();
+			currentImg = img.eq(i);
+			currentImg.fadeIn();
+			currentIcon.css("background-color", "transparent");
+			currentIcon = icons.eq(i);
+			currentIcon.css("background-color", "#FFFFFF");
+		});
+			
+		$("#right").click(function(){
+			if(i < indexImg)
+			{
+				i = i+1
+			}
+			else
+			{
+				i = 0;
+			}
+			console.log(i);
+			img.fadeOut();
+			currentImg = img.eq(i);
+			currentImg.fadeIn();
+			currentIcon.css("background-color", "transparent");
+			currentIcon = icons.eq(i);
+			currentIcon.css("background-color", "#FFFFFF");
+		});
+		
+		function loopCarrousel()
+		{
+			setTimeout(function(){
+				if(i < indexImg)
+				{
+					i = i+1
+				}
+				else
+				{
+					i = 0;
+				}
+				img.fadeOut();
+				currentImg = img.eq(i);
+				currentImg.fadeIn();
+				currentIcon.css("background-color", "transparent");
+				currentIcon = icons.eq(i);
+				currentIcon.css("background-color", "#FFFFFF");
+				
+				loopCarrousel();
+				
+			}, 10000);
+		}
+		loopCarrousel();
+	});
+</script>
+{% endblock %}

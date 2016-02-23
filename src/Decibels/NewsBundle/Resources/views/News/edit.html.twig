@@ -1,0 +1,11 @@
+{% extends '::layout.html.twig' %}
+
+{% block title %}Modifier une news - Décibels{% endblock %}
+
+{% block body %}
+    <h1>News edit</h1>
+
+    {{ form(edit_form) }}
+
+        <a href="{{ path('decibels_news_listAdmin') }}">Retourner à la liste</a>
+{% endblock %}

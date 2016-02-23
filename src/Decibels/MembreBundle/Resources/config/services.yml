@@ -1,0 +1,19 @@
+services:
+#    decibels_membre.example:
+#        class: Decibels\MembreBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
+
+    cas.security.user.provider:
+        class: Decibels\MembreBundle\Security\User\CasUserProvider
+
+    cas.security.authentication.provider:
+        class: Decibels\MembreBundle\Security\Authentication\Provider\CasProvider
+        arguments: [@cas.security.user.provider, %MembreBundle.check_path%, @request_stack]
+    
+    cas.security.authentication.listener:
+        class: Decibels\MembreBundle\Security\Firewall\CasListener
+        arguments: [@security.token_storage, @security.authentication.manager]
+    
+    cas.security.authentication.entrypoint:
+        class: Decibels\MembreBundle\Security\EntryPoint\CasEntryPoint
+        arguments: [@security.http_utils, %MembreBundle.login_path%, %MembreBundle.check_path%]

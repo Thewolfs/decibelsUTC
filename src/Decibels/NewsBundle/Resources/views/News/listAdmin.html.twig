@@ -1,0 +1,21 @@
+{% extends '::layout.html.twig' %}
+
+{% block title %}Modifier / Supprimer une news - Décibels{% endblock %}
+
+{% block body %}
+	<h2 class="text-center">Modifier / Supprimer une news</h2>
+	<table class="table-bordered">
+	<tr class="row" style="font-size: 18px; color: #FFEB3B; background-color: #591820;">
+		<th class="col-md-10">Nom</th>
+		<th class="col-md-1"></th>
+		<th class="col-md-1"></th>
+	</tr>
+	{% for news in listNews %}
+		<tr class="row">
+			<td class="col-md-10">{{ news.title }}</td>
+			<td class="col-md-1 text-center"><a style="color: #591820;" href="{{ path('decibels_news_edit', {'id': news.id }) }}"><span class="glyphicon glyphicon-edit"></a></span></td>
+			<td class="col-md-1 text-center"><a style="color: #591820;" href="{{ path('decibels_news_delete', {'id': news.id }) }}"><span class="glyphicon glyphicon-remove"></a></span></td>
+		</tr>
+	{% endfor %}
+	</table>
+{% endblock %}

@@ -1,0 +1,16 @@
+decibels_realisation:
+    resource: "@DecibelsGeneralBundle/Resources/config/routing.yml"
+    prefix:   /
+
+decibels_materiel:
+    resource: "@DecibelsMaterielBundle/Resources/config/routing.yml"
+    prefix:   /
+
+decibels_membre:
+    resource: "@DecibelsMembreBundle/Resources/config/routing.yml"
+    prefix:   /
+
+decibels_news:
+    resource: "@DecibelsNewsBundle/Resources/config/routing.yml"
+    prefix:   /
+

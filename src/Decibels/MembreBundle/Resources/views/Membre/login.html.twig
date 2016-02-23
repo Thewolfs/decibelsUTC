@@ -1,0 +1,10 @@
+{% extends '::layout.html.twig' %}
+
+{% block title %}Login - Décibels{% endblock %}
+
+{% block body %}
+	Vous êtes bien connecter ! 
+	{% if app.session.get('test') is defined %}
+		{{ app.session.get('test') }}
+	{% endif %}
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends '::layout.html.twig' %}
+
+{% block title %}Ajouter du matériel - Décibels{% endblock %}
+
+{% block body %}
+	<h2 class="text-center">Ajouter du matériel</h2>
+	{{ form_start(form) }}
+		{{ form_errors(form) }}
+		
+		{{ form_row(form.nom) }}
+		
+		{{ form_row(form.type) }}
+		
+		{{ form_row(form.description) }}
+		<div class="row">
+		<div class="col-md-6">
+		{{ form_row(form.prix) }}
+		</div>
+		<div class="col-md-6">
+		{{ form_row(form.maxNum) }}
+		</div>
+		</div>
+	{{ form_end(form) }}
+{% endblock %}

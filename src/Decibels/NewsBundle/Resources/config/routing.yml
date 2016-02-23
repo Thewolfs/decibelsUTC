@@ -1,0 +1,8 @@
+decibels_news_news:
+    resource: "@DecibelsNewsBundle/Resources/config/news.yml"
+    prefix:   /decibels/news
+
+decibels_homepage:
+    path:     /decibels/
+    defaults: { _controller: DecibelsNewsBundle:News:index }
+    methods: [GET]
