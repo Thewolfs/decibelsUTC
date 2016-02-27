@@ -1,10 +1,11 @@
 set :application, "decibels"
-set :domain,      "decibels@files.mde.utc"
+set :domain,      "decibels@web.mde.utc"
 set :deploy_to,   "/sites/decibels"
 set :app_path,    "app"
 
 set :repository,  "git@github.com:Thewolfs/decibelsUTC.git"
 set :scm,         :git
+set :branch,      "master"
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `subversion`, `mercurial`, `perforce`, or `none`
 
 set :model_manager, "doctrine"
@@ -17,8 +18,10 @@ set  :keep_releases,  3
 
 set  :use_sudo, false
 
-set  :update_vendors, true
+set  :use_composer, true
+set  :composer_bin,  "/sites/decibels/composer.phar"
+set :composer_options, "--verbose --working-dir=#{release_path} "
 
-set :shared_children, [app_path + "/logs", web_path + "/uploads", "vendor"]
+set  :shared_children, [app_path + "/logs", web_path + "/uploads", "vendor"]
 # Be more verbose by uncommenting the following line
 # logger.level = Logger::MAX_LEVEL
