@@ -12,6 +12,8 @@
         "doctrine/orm": "2.4.8",
         "doctrine/dbal": "<2.5",
         "doctrine/doctrine-bundle": "~1.2",
+        "doctrine/cache": "1.5.4",
+        "doctrine/migrations": "1.0.0-alpha3",
         "twig/extensions": "~1.0",
         "symfony/assetic-bundle": "~2.3",
         "symfony/swiftmailer-bundle": "~2.3",
