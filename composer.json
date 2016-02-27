@@ -27,7 +27,7 @@
         "doctrine/common": "2.5.3",
         "doctrine/migrations": "1.0.0-alpha3",
         "zendframework/zend-code": "2.5.1",
-        "zendframework/zend-eventmanager": "2.5.1",
+        "zendframework/zend-eventmanager": "2.5.1"
         
     },
     "require-dev": {
