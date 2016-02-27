@@ -22,7 +22,13 @@
         "symfony/dom-crawler": "2.6.6",
         "symfony/css-selector": "2.6.6",
         "doctrine/doctrine-migrations-bundle": "1.1.1",
-        "stfalcon/tinymce-bundle": "dev-master"
+        "stfalcon/tinymce-bundle": "dev-master",
+        "doctrine/cache": "1.4.4",
+        "doctrine/common": "2.5.3",
+        "doctrine/migrations": "1.0.0-alpha3",
+        "zendframework/zend-code": "2.5.1",
+        "zendframework/zend-eventmanager": "2.5.1",
+        
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
