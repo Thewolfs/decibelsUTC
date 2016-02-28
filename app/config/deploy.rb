@@ -22,6 +22,7 @@ set  :use_composer, true
 set  :composer_bin,  "/sites/decibels/composer.phar"
 set  :composer_options, "--verbose --working-dir=#{release_path} --optimize-autoloader "
 
-set  :shared_children, [app_path + "/logs", app_path + "/config/custom.yml", web_path + "/uploads", "vendor"]
+set  :shared_children, [app_path + "/logs", web_path + "/uploads", "vendor"]
+set  :shared_files, [app_path + "/config/custom.yml"]
 # Be more verbose by uncommenting the following line
 # logger.level = Logger::MAX_LEVEL
