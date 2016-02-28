@@ -24,5 +24,7 @@ set  :composer_options, "--verbose --working-dir=#{release_path} --optimize-auto
 
 set  :shared_children, [app_path + "/logs", web_path + "/uploads", "vendor"]
 set  :shared_files, [app_path + "/config/custom.yml"]
+
+before "symfony:cache:warmup", "symfony:doctrine:migrations:migrate"
 # Be more verbose by uncommenting the following line
 # logger.level = Logger::MAX_LEVEL
