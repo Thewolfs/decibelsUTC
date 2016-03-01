@@ -12,3 +12,4 @@
 /composer.phar
 .htaccess
 /web/.htaccess
+/web/uploads/

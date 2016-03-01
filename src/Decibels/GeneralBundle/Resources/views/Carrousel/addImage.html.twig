@@ -1,0 +1,93 @@
+{% extends '::layout.html.twig' %}
+
+{% form_theme form _self %}
+
+{% block fileUpload_widget %}
+    {% spaceless %}
+        <div>
+            <label for="{{ form.vars.id }}" class="btn btn-success">
+                <i class="glyphicon glyphicon-picture"></i>
+                Choisir une image
+            </label>
+            <input id="{{ form.vars.id }}" class="ajax_file hidden" type="file" data-target="{{ path('decibels_file_uploadFile') }}">
+
+            <div class="progress hidden" style="width: 150px">
+                <div class="progress-bar progress-bar-success"></div>
+            </div>
+
+            <input name="{{ form.vars.full_name }}" type="hidden">
+        </div>
+    {% endspaceless %}
+{% endblock fileUpload_widget %}
+
+{% block title %}Ajouter une image - Décibels{% endblock %}
+
+{% block body %}
+	<h2 class="text-center">Ajouter une image au carrousel</h2>
+	<div style="padding: 5px;">
+		{{ form(form) }}
+	</div>
+{% endblock %}
+
+{% block javascript %}
+<script>
+    $('.ajax_file').on('change', function(){
+        var $this = $(this);
+        var $loadingBar = $this.siblings('.progress').children();
+        var $label = $this.siblings('label');
+        var $input = $this.siblings('input[type=hidden]');
+
+        var file = $this[0].files[0];
+
+        $label.remove();
+        $loadingBar.parent().removeClass('hidden');
+
+        var data = new FormData();
+        data.append('fileUpload[file]', file);
+        
+        console.log(file)
+        
+        $.ajax({
+            type: 'POST',
+            // On récupère l'url dans l'attribut data-target
+            url: $this.data('target'),
+            // On passe le FormData en paramètre
+            data: data,
+            // On ne précise pas le contentType pour l'upload de fichier
+            contentType: false,
+            // Comme on passe directement un FormData on désactive le processData
+            processData: false,
+            xhr: function()
+            {
+                var xhr = $.ajaxSettings.xhr();
+
+                xhr.upload.addEventListener("progress", function(e){
+                    $loadingBar.css('width', e.loaded / e.total * 100 + '%');
+                }, false);
+
+                return xhr;
+            },
+            success: function(response){
+                // On affiche le nom du fichier dans la barre de chargement
+                $loadingBar
+                    .css('width', '100%')
+                    .text(file.name);
+                // On met l'id du File fraichement créé dans notre input
+                $input.val(response.id);
+                // On supprimer le <input type="file">
+                $this.remove();
+            },
+            error: function(response){
+                // On indique qu'il y a une erreur dans la barre de chargement
+                $loadingBar
+                    .css('width', '100%')
+                    .removeClass('progress-bar-success')
+                    .addClass('progress-bar-danger')
+                    .text('Erreur');
+                // On supprime le <input type="file">
+                $this.remove();
+            }
+        });
+    });
+</script>
+{% endblock %}

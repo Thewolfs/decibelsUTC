@@ -28,7 +28,8 @@
         "doctrine/migrations": "1.0.0-alpha3",
         "zendframework/zend-code": "2.5.1",
         "zendframework/zend-eventmanager": "2.5.1",
-        "zendframework/zend-stdlib": "2.5.1"
+        "zendframework/zend-stdlib": "2.5.1",
+        "stof/doctrine-extensions-bundle": "1.2.2"
         
     },
     "require-dev": {

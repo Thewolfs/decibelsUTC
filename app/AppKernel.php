@@ -21,7 +21,8 @@ class AppKernel extends Kernel
             new Decibels\MembreBundle\DecibelsMembreBundle(),
             new Decibels\MaterielBundle\DecibelsMaterielBundle(),
             new Decibels\GeneralBundle\DecibelsGeneralBundle(),
-            new Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle()
+            new Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle(),
+            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

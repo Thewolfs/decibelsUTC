@@ -46,3 +46,13 @@ decibels_realisation_listAdmin:
     path:     /decibels/realisation/admin/list
     defaults: { _controller:DecibelsGeneralBundle:Default:listAdmin }
     methods: [GET]
+
+decibels_file_uploadFile:
+    path:     /decibels/file/upload
+    defaults: { _controller:DecibelsGeneralBundle:Default:uploadFile }
+    methods: [POST]
+    
+decibels_carrousel_addImage:
+    path:     /decibels/carrousel/addImage
+    defaults: { _controller:DecibelsGeneralBundle:Carrousel:addImage }
+    methods: [GET]

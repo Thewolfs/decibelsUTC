@@ -7,3 +7,7 @@ services:
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+    form.type.fileUpload:
+        class: Decibels\GeneralBundle\Form\FileType
+        tags:
+            - { name: form.type, alias: fileUpload }

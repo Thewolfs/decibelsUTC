@@ -8,6 +8,9 @@ use Decibels\GeneralBundle\Entity\Realisation;
 use Decibels\GeneralBundle\Form\RealisationType;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Decibels\GeneralBundle\Entity\File;
+use Decibels\GeneralBundle\Form\FileType;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class DefaultController extends Controller
 {
@@ -191,4 +194,31 @@ class DefaultController extends Controller
 		
 		return $this->render('DecibelsGeneralBundle:Default:listAdmin.html.twig', array('listRea' => $listRea));
 	}
+	
+	public function uploadFileAction(Request $request)
+    {
+        $file = new File;
+        $form = $this->createForm(new FileType, $file);
+		
+        if($form->handleRequest($request)->isValid()){
+            $em = $this->getDoctrine()->getEntityManager();
+            $em->persist($file);
+
+            $manager = $this->get('stof_doctrine_extensions.uploadable.manager');
+			$manager->getUploadableListener()->setDefaultPath($this->get('kernel')->getRootDir().'/../web'.$request->request->get('webDirPath', '/uploads'));
+            $manager->markEntityToUpload($file, $file->getFile());
+
+            $em->flush();
+
+            return new JsonResponse(array(
+                'id' => $file->getId(),
+				'test' => $request->request->get('file')
+            ));
+        }
+
+        return new JsonResponse(array(
+            'error' => $form->getErrors(true),
+			'test' => $request->request->get('file')
+        ), 400);
+    }
 }

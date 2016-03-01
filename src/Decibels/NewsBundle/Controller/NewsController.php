@@ -27,6 +27,8 @@ class NewsController extends Controller
 		$clipFile = current($clipFiles);
 		$clipArray = json_decode($clipFile->getContents());
 		
+        $test = $this->get('stof_doctrine_extensions.uploadable.manager');
+        
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('DecibelsNewsBundle:News')->findAllSortDate();
@@ -34,7 +36,8 @@ class NewsController extends Controller
         return $this->render('DecibelsNewsBundle:News:index.html.twig', array(
             'entities' => $entities,
 			'listImg' => $listImg,
-			'clipArray' => $clipArray
+			'clipArray' => $clipArray,
+            'test' => $test
         ));
     }
 	
