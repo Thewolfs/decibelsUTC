@@ -53,6 +53,13 @@ class News
 	 * @ORM\OneToMany(targetEntity="Decibels\NewsBundle\Entity\Comment", mappedBy="news")
 	 */
 	private $comments;
+    
+    /**
+     * @var picture
+     *
+	 * @ORM\OneToOne(targetEntity="Decibels\GeneralBundle\Entity\File")
+	 */
+    private $picture;
 	
     /**
      * Get id
@@ -194,5 +201,28 @@ class News
     public function getAuthor()
     {
         return $this->author;
+    }
+
+    /**
+     * Set picture
+     *
+     * @param \Decibels\GeneralBundle\Entity\File $picture
+     * @return News
+     */
+    public function setPicture(\Decibels\GeneralBundle\Entity\File $picture = null)
+    {
+        $this->picture = $picture;
+
+        return $this;
+    }
+
+    /**
+     * Get picture
+     *
+     * @return \Decibels\GeneralBundle\Entity\File 
+     */
+    public function getPicture()
+    {
+        return $this->picture;
     }
 }

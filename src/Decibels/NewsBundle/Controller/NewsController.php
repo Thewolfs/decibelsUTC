@@ -58,6 +58,8 @@ class NewsController extends Controller
 			$author = $this->getUser()->getUsername();
 			$entity->setAuthor($author);
             $em = $this->getDoctrine()->getManager();
+            $image = $em->getRepository('DecibelsGeneralBundle:File')->find($request->request->get('file_id'));
+            $entity->setPicture($image);
             $em->persist($entity);
             $em->flush();
 

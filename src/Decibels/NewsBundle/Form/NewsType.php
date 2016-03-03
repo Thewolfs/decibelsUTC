@@ -17,6 +17,7 @@ class NewsType extends AbstractType
         $builder
             ->add('title', 'text', array('label' => 'Titre'))
             ->add('text', 'textarea', array('label' => 'Contenu'))
+            ->add('picture', 'fileUpload', array('label' => false))
         ;
     }
     
