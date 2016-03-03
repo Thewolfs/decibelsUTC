@@ -20,7 +20,7 @@ class CarrouselController extends Controller
         if($form->handleRequest($request)->isValid()) 
         {
             $em = $this->getDoctrine()->getManager();
-            $image = $em->getRepository('DecibelsGeneralBundle:FIle')->find($request->request->get('file_id'));
+            $image = $em->getRepository('DecibelsGeneralBundle:File')->find($request->request->get('file_id'));
             $carrousel->setPicture($image);
             $carrousel->setActive(true);
             $em->persist($carrousel);
