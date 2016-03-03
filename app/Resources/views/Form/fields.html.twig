@@ -20,7 +20,7 @@
 {% endblock textarea_widget %}
 
 {% block form_label %}
-{% spaceless %}
+{% if label is not same as(false) -%}
     {% if not compound %}
         {% set label_attr = label_attr|merge({'for': id}) %}
     {% endif %}
@@ -31,7 +31,7 @@
         {% set label = name|humanize %}
     {% endif %}
     <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ label|trans({}, translation_domain) }} :</label>
-{% endspaceless %}
+{% endif %}
 {% endblock form_label %}
 
 {%- block button_widget -%}

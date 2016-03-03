@@ -16,7 +16,12 @@ class CarrouselType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('picture', 'fileUpload');
+            ->add('picture', 'fileUpload', array(
+                 'label' => false
+            ))
+            ->add('zoom', 'hidden')
+            ->add('leftClip', 'hidden')
+            ->add('topClip', 'hidden');
     }
     
     /**
@@ -25,7 +30,8 @@ class CarrouselType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Decibels\GeneralBundle\Entity\Carrousel'
+            'data_class' => 'Decibels\GeneralBundle\Entity\Carrousel',
+            'attr' => ['id' => 'carrousel_form']
         ));
     }
 

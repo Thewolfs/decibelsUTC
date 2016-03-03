@@ -17,6 +17,19 @@ class CarrouselController extends Controller
 		
 		$form = $this->get('form.factory')->create(new CarrouselType(), $carrousel);
         
+        if($form->handleRequest($request)->isValid()) 
+        {
+            $em = $this->getDoctrine()->getManager();
+            $image = $em->getRepository('DecibelsGeneralBundle:FIle')->find($request->request->get('file_id'));
+            $carrousel->setPicture($image);
+            $carrousel->setActive(true);
+            $em->persist($carrousel);
+			$em->flush();
+			
+			$request->getSession()->getFlashBag()->add('notice', 'Image bien ajoutée.');
+			 
+			return $this->redirect($this->generateUrl('decibels_homepage'));
+        }
         return $this->render('DecibelsGeneralBundle:Carrousel:addImage.html.twig', array('form' => $form->createView()));
     }
 }

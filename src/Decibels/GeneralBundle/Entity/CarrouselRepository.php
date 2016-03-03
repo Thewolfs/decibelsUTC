@@ -12,4 +12,15 @@ use Doctrine\ORM\EntityRepository;
  */
 class CarrouselRepository extends EntityRepository
 {
+    public function findAllActiveJoinFile() 
+    {
+        $listImage = $this->createQueryBuilder('c')
+					 ->leftJoin('c.picture', 'p')
+					 ->addSelect('p')
+					 ->where('c.active = 1')
+					 ->getQuery()
+					 ->getResult();
+		
+		return $listImage;
+    }
 }

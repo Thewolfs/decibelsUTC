@@ -55,4 +55,4 @@ decibels_file_uploadFile:
 decibels_carrousel_addImage:
     path:     /decibels/carrousel/addImage
     defaults: { _controller:DecibelsGeneralBundle:Carrousel:addImage }
-    methods: [GET]
+    methods: [GET|POST]

@@ -3,17 +3,30 @@
 {% block title %}Accueil - Décibels{% endblock %}
 
 {% block banniere %}
-	<div id="carrousel" class="col-md-12" style="width: 1000px; height: 450px; border: 1px solid #B6B6B6; box-sizing: content-box;">
-		<div id="left" style="z-index: 3; position: absolute; top: 195px; left: 3px; display: inline-block; border: 5px solid #FFEB3B; border-radius: 35px; height: 70px; width: 70px; text-align: center;"><span class="glyphicon glyphicon-chevron-left" style="position: relative; left: -3px; top: 5px; display: inline-block; color: #FFEB3B; font-size: 50px; height: 50px;"></span></div>
-		<div id="right" style="z-index: 3; position: absolute; top: 195px; right: 3px; display: inline-block; float: right; border: 5px solid #FFEB3B; border-radius: 35px; height: 70px; width: 70px; text-align: center;"><span class="glyphicon glyphicon-chevron-right" style="position: relative; left: 1px; top: 3px; display: inline-block; color: #FFEB3B; font-size: 50px; height: 50px;"></span></div> 
-		{% for img in listImg %}
-			<img src="{{ asset('design/img/carrousel/' ~ img.relativePathname) }}" alt="carrousel-{{ loop.index }}" width="100%" style="z-index: 2; position: absolute; top: -{{ clipArray[loop.index0] }}px; left: 0px; clip: rect({{ clipArray[loop.index0] }}px, 1200px, {{ clipArray[loop.index0] + 450}}px, 0px)"/>
-		{% endfor %}
-	</div>
+		
+<div id="carousel" class="carousel slide" data-ride="carousel" style="width: 1000px; height: 450px; left: -15px;">
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox" style="height: 100%;">
+  {% for img in listImg %}
+    <div class="item">
+		<img src="{{ asset('uploads/carrousel/' ~ img.picture.name) }}" alt="carrousel-{{ loop.index }}" width="{{ 1000 * img.zoom }}" style="position: absolute; top: -{{ img.topClip }}px; left: -{{ img.leftClip }}px;"/>
+    </div>
+   {% endfor %}
+  </div>
+
+  <!-- Controls -->
+  <a class="left carousel-control" href="#carousel" role="button" data-slide="prev" style="background-image: linear-gradient(to left, rgba(89, 24, 32, 0.0001) 0, rgba(89, 24, 32, 0.5) 100%);">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true" style="font-size: 50px; color: #FFEB3B; left: 20%;"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#carousel" role="button" data-slide="next" style="background-image: linear-gradient(to right, rgba(89, 24, 32, 0.0001) 0, rgba(89, 24, 32, 0.5) 100%);">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true" style="font-size: 50px; color: #FFEB3B; right: 20%;"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
 {% endblock %}	
 
 {% block body %}
-	{{ dump(test) }}
 	<div style="margin-top: 10px;">
 	{% for entity in entities %}
 		<div style="padding: 5px; box-shadow: 0px 1px #591820;">
@@ -30,98 +43,20 @@
 {% block javascript %}
 <script>
 	$().ready(function (){
-		$("#left").fadeOut(0);
-		$("#right").fadeOut(0);
-		
-		$("#carrousel").css("margin-left", ($("#carrousel").parent().width() - $("#carrousel").outerWidth())/2);
-		
-		$("#carrousel img").fadeOut(0);
-		var img = $("#carrousel img");
+		$(".carousel-inner").children().first().addClass("active");
+		var img = $("#carousel img");
 		var indexImg = img.length - 1;
 		var i = 0;
-		var currentImg = img.eq(i);
-		currentImg.fadeIn();
 		
-		var icons = '<div style="position: absolute; bottom: 5px; right: 10px; z-index: 5;">';
+		var icons = '<ol class="carousel-indicators">';
 		for(j = 0; j <= indexImg; j++)
 		{
-			icons += '<span class="carrouselIcon"></span>'
+			icons += '<li data-target="#carousel" data-slide-to="' + j + '"></li>'
 		}
-		icons += "</div>"
-		$("#carrousel").append(icons);
-
-		var icons = $('.carrouselIcon');
-		var currentIcon = icons.eq(i);
-		currentIcon.css("background-color", "#FFFFFF");
+		icons += "</ol>"
+		$("#carousel").append(icons);
 		
-		$("#carrousel").hover(function() {
-			$("#left").fadeIn(700);
-			$("#right").fadeIn(700);
-		},
-		function() {
-			$("#left").fadeOut(700);
-			$("#right").fadeOut(700);
-		});
-		
-		$("#left").click(function(){
-			if(i > 0)
-			{
-				i = i-1
-			}
-			else
-			{
-				i = indexImg;
-			}
-			
-			currentImg.fadeOut();
-			currentImg = img.eq(i);
-			currentImg.fadeIn();
-			currentIcon.css("background-color", "transparent");
-			currentIcon = icons.eq(i);
-			currentIcon.css("background-color", "#FFFFFF");
-		});
-			
-		$("#right").click(function(){
-			if(i < indexImg)
-			{
-				i = i+1
-			}
-			else
-			{
-				i = 0;
-			}
-			console.log(i);
-			img.fadeOut();
-			currentImg = img.eq(i);
-			currentImg.fadeIn();
-			currentIcon.css("background-color", "transparent");
-			currentIcon = icons.eq(i);
-			currentIcon.css("background-color", "#FFFFFF");
-		});
-		
-		function loopCarrousel()
-		{
-			setTimeout(function(){
-				if(i < indexImg)
-				{
-					i = i+1
-				}
-				else
-				{
-					i = 0;
-				}
-				img.fadeOut();
-				currentImg = img.eq(i);
-				currentImg.fadeIn();
-				currentIcon.css("background-color", "transparent");
-				currentIcon = icons.eq(i);
-				currentIcon.css("background-color", "#FFFFFF");
-				
-				loopCarrousel();
-				
-			}, 10000);
-		}
-		loopCarrousel();
+		$(".carousel-indicators li").first().addClass("active");
 	});
 </script>
 {% endblock %}

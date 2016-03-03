@@ -31,23 +31,9 @@ class Carrousel
     /**
      * @var integer
      *
-     * @ORM\Column(name="bottom", type="integer")
-     */
-    private $bottomClip;
-
-    /**
-     * @var integer
-     *
      * @ORM\Column(name="leftClip", type="integer")
      */
     private $leftClip;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="rightClip", type="integer")
-     */
-    private $rightClip;
 
     /**
      * @var picture
@@ -55,7 +41,20 @@ class Carrousel
      * @ORM\OneToOne(targetEntity="Decibels\GeneralBundle\Entity\File")
      */
     private $picture;
-
+    
+     /**
+     * @var integer
+     *
+     * @ORM\Column(name="zoom", type="integer")
+     */
+    private $zoom;
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="active", type="boolean")
+     */
+    private $active;
 
     /**
      * Get id
@@ -91,29 +90,6 @@ class Carrousel
     }
 
     /**
-     * Set bottom
-     *
-     * @param integer $bottom
-     * @return Carrousel
-     */
-    public function setBottomClip($bottomClip)
-    {
-        $this->bottomClip = $bottomClip;
-
-        return $this;
-    }
-
-    /**
-     * Get bottom
-     *
-     * @return integer 
-     */
-    public function getBottomClip()
-    {
-        return $this->bottomClip;
-    }
-
-    /**
      * Set leftClip
      *
      * @param integer $leftClip
@@ -137,29 +113,6 @@ class Carrousel
     }
 
     /**
-     * Set rightClip
-     *
-     * @param integer $rightClip
-     * @return Carrousel
-     */
-    public function setRightClip($rightClip)
-    {
-        $this->rightClip = $rightClip;
-
-        return $this;
-    }
-
-    /**
-     * Get rightClip
-     *
-     * @return integer 
-     */
-    public function getRightClip()
-    {
-        return $this->rightClip;
-    }
-
-    /**
      * Set picture
      *
      * @param \Decibels\GeneralBundle\Entity\File $picture
@@ -180,5 +133,51 @@ class Carrousel
     public function getPicture()
     {
         return $this->picture;
+    }
+
+    /**
+     * Set zoom
+     *
+     * @param integer $zoom
+     * @return Carrousel
+     */
+    public function setZoom($zoom)
+    {
+        $this->zoom = $zoom;
+
+        return $this;
+    }
+
+    /**
+     * Get zoom
+     *
+     * @return integer 
+     */
+    public function getZoom()
+    {
+        return $this->zoom;
+    }
+
+    /**
+     * Set active
+     *
+     * @param boolean $active
+     * @return Carrousel
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
+
+        return $this;
+    }
+
+    /**
+     * Get active
+     *
+     * @return boolean 
+     */
+    public function getActive()
+    {
+        return $this->active;
     }
 }

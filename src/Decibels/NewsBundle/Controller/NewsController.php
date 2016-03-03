@@ -18,26 +18,15 @@ class NewsController extends Controller
 
     public function indexAction()
     {
-		$finder1 = new Finder();
-		$finder1->in('./design/img/carrousel')->depth('== 0')->notName("*.json");
-		$listImg = iterator_to_array($finder1);
-		$finder2 = new Finder();
-		$finder2->in('./design/img/carrousel')->name("*.json");
-		$clipFiles = iterator_to_array($finder2);
-		$clipFile = current($clipFiles);
-		$clipArray = json_decode($clipFile->getContents());
-		
-        $test = $this->get('stof_doctrine_extensions.uploadable.manager');
+		$em = $this->getDoctrine()->getManager();
         
-        $em = $this->getDoctrine()->getManager();
+        $listImg = $em->getRepository('DecibelsGeneralBundle:Carrousel')->findAllActiveJoinFile();
 
         $entities = $em->getRepository('DecibelsNewsBundle:News')->findAllSortDate();
 
         return $this->render('DecibelsNewsBundle:News:index.html.twig', array(
             'entities' => $entities,
-			'listImg' => $listImg,
-			'clipArray' => $clipArray,
-            'test' => $test
+			'listImg' => $listImg
         ));
     }
 	

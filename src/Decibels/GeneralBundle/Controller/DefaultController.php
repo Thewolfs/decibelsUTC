@@ -205,20 +205,20 @@ class DefaultController extends Controller
             $em->persist($file);
 
             $manager = $this->get('stof_doctrine_extensions.uploadable.manager');
-			$manager->getUploadableListener()->setDefaultPath($this->get('kernel')->getRootDir().'/../web'.$request->request->get('webDirPath', '/uploads'));
+			$manager->getUploadableListener()->setDefaultPath($this->get('kernel')->getRootDir().'/../web/uploads'.$request->request->get('webDirPath', ''));
             $manager->markEntityToUpload($file, $file->getFile());
 
             $em->flush();
 
             return new JsonResponse(array(
-                'id' => $file->getId(),
-				'test' => $request->request->get('file')
+				'id' => $file->getId(),
+                'path' => $file->getPath(),
+				'name' => $file->getName()
             ));
         }
 
         return new JsonResponse(array(
-            'error' => $form->getErrors(true),
-			'test' => $request->request->get('file')
+            'error' => $form->getErrors(true)
         ), 400);
     }
 }

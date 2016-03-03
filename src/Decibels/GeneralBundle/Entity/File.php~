@@ -32,6 +32,13 @@ class File
     private $path;
     
     /**
+     * @var string
+     * @ORM\Column(name="name", type="string", length=255)
+     * @Gedmo\UploadableFileName
+     */
+    private $name;
+    
+    /**
      * @Assert\NotBlank()
      */
     private $file;
@@ -67,5 +74,17 @@ class File
     public function getPath()
     {
         return $this->path;
+    }
+    
+    public function setFile($file)
+    {
+        $this->file = $file;
+
+        return $this;
+    }
+    
+    public function getFile()
+    {
+        return $this->file;
     }
 }
