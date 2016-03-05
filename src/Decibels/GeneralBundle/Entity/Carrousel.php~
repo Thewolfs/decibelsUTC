@@ -43,11 +43,18 @@ class Carrousel
     private $picture;
     
      /**
-     * @var integer
+     * @var float
      *
-     * @ORM\Column(name="zoom", type="integer")
+     * @ORM\Column(name="zoom", type="float")
      */
     private $zoom;
+    
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="ratio", type="float")
+     */
+    private $ratio;
     
     /**
      * @var boolean
@@ -156,5 +163,28 @@ class Carrousel
     public function getZoom()
     {
         return $this->zoom;
+    }
+
+    /**
+     * Set active
+     *
+     * @param boolean $active
+     * @return Carrousel
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
+
+        return $this;
+    }
+
+    /**
+     * Get active
+     *
+     * @return boolean 
+     */
+    public function getActive()
+    {
+        return $this->active;
     }
 }

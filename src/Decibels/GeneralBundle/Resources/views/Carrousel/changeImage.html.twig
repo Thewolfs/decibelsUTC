@@ -1,0 +1,30 @@
+{% extends '::layout.html.twig' %}
+
+{% block title %}Changer les images du carrousel - Décibels{% endblock %}
+
+{% block body %}
+    <div class="row" style="text-align: center;">
+        {% for img in listImage %}
+            <div class="col-md-3" style="margin: 2.77666667%; overflow: hidden; box-sizing: border-box;{% if img.active %}
+                        outline: 5px solid #FFEB3B;
+                    {% endif %}" data-active="{% if img.active %}1{% else %}0{% endif %}">
+                <img src="{{ asset('uploads/carrousel/' ~ img.picture.name) }}" width="100%"/>
+                {% if img.active %}
+                    <span class="glyphicon glyphicon-ok" style="width: 40px; height: 40px;display: block; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 2; color: #FFEB3B; font-size: 40px; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6)"></span>
+                {% endif %}">
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block javascript %}
+<script>
+
+    var height = $(".col-md-3").first().width() * 3/4;
+        console.log(height);
+    
+    $(".col-md-3").each(function () {
+        $(this).height(height + 'px');
+    })
+</script>
+{% endblock %}

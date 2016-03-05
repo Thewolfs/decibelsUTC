@@ -56,3 +56,8 @@ decibels_carrousel_addImage:
     path:     /decibels/carrousel/addImage
     defaults: { _controller:DecibelsGeneralBundle:Carrousel:addImage }
     methods: [GET|POST]
+
+decibels_carrousel_changeImage:
+    path:     /decibels/carrousel/changeImage
+    defaults: { _controller:DecibelsGeneralBundle:Carrousel:changeImage }
+    methods: [GET|POST]

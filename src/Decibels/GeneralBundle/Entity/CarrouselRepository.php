@@ -23,4 +23,15 @@ class CarrouselRepository extends EntityRepository
 		
 		return $listImage;
     }
+	
+	public function findAllJoinFile() 
+    {
+        $listImage = $this->createQueryBuilder('c')
+					 ->leftJoin('c.picture', 'p')
+					 ->addSelect('p')
+					 ->getQuery()
+					 ->getResult();
+		
+		return $listImage;
+    }
 }

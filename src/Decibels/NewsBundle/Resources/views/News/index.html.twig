@@ -9,7 +9,7 @@
   <div class="carousel-inner" role="listbox" style="height: 100%;">
   {% for img in listImg %}
     <div class="item">
-		<img src="{{ asset('uploads/carrousel/' ~ img.picture.name) }}" alt="carrousel-{{ loop.index }}" width="{{ 1000 * img.zoom }}" style="position: absolute; top: -{{ img.topClip }}px; left: -{{ img.leftClip }}px;"/>
+		<img src="{{ asset('uploads/carrousel/' ~ img.picture.name) }}" alt="carrousel-{{ loop.index }}" width="{{ 1000 * img.zoom }} px" style="position: absolute; top: {{ img.topClip / img.ratio }}px; left: {{ img.leftClip / img.ratio }}px; max-width: none;"/>
     </div>
    {% endfor %}
   </div>
