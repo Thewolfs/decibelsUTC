@@ -5,26 +5,67 @@
 {% block body %}
     <div class="row" style="text-align: center;">
         {% for img in listImage %}
-            <div class="col-md-3" style="margin: 2.77666667%; overflow: hidden; box-sizing: border-box;{% if img.active %}
-                        outline: 5px solid #FFEB3B;
-                    {% endif %}" data-active="{% if img.active %}1{% else %}0{% endif %}">
-                <img src="{{ asset('uploads/carrousel/' ~ img.picture.name) }}" width="100%"/>
-                {% if img.active %}
-                    <span class="glyphicon glyphicon-ok" style="width: 40px; height: 40px;display: block; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 2; color: #FFEB3B; font-size: 40px; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6)"></span>
-                {% endif %}">
+            <div class="col-md-3 vignette" style="cursor: pointer; padding: 0; margin: 2.77666667%; overflow: hidden; box-sizing: border-box;{% if img.active %}
+                        outline: 7px solid #FFEB3B;
+                    {% endif %}" data-active="{% if img.active %}1{% else %}0{% endif %}" data-id="{{ img.id }}">
+                <img src="{{ asset('uploads/carrousel/' ~ img.picture.name) }}" width="100%" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1;"/>
+                
+                    <span class="glyphicon glyphicon-ok {% if not img.active %}hidden{% endif %}" style="width: 40px; height: 40px; display: block; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 2; color: #FFEB3B; font-size: 40px; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6)"></span>
             </div>
         {% endfor %}
+        {{ form(form) }}
     </div>
 {% endblock %}
 
 {% block javascript %}
 <script>
 
+    function searchId(nameKey, myArray){
+        for (var i=0; i < myArray.length; i++) {
+            if (myArray[i].id === nameKey) {
+                return i;
+            }
+        }
+        return false;
+    }
     var height = $(".col-md-3").first().width() * 3/4;
-        console.log(height);
+    var modifiedImgArray = [];
     
     $(".col-md-3").each(function () {
         $(this).height(height + 'px');
+    });
+    
+    $(".vignette").click(function() {
+        var $vignette = $(this);
+        var $input = $("#form_modifiedImgs");
+        var state = $vignette.data("active");
+        var idImg = $vignette.data("id");
+        
+        var index = searchId(idImg, modifiedImgArray);
+        
+        if(index === false) {
+            modifiedImgArray.push({
+                id: idImg,
+                active: !state
+            });
+            index = 0;
+        }
+        else {
+            modifiedImgArray[index] = {
+                id: idImg,
+                active: !(modifiedImgArray[index].active)
+            }
+        }
+        $input.val(JSON.stringify(modifiedImgArray));
+        
+        if(modifiedImgArray[index].active) {
+            $vignette.css("outline", "7px solid #FFEB3B");
+            $vignette.children().last().removeClass("hidden");
+        }
+        else {
+            $vignette.css("outline", "none");
+            $vignette.children().last().addClass("hidden");
+        }
     })
 </script>
 {% endblock %}

@@ -52,8 +52,8 @@ class CarrouselController extends Controller
             
             foreach($modifiedImgs as $element) 
             {
-                $img = $em->getRepository('DecibelsGeneralBundle:Carrousel')->find($element[0]); 
-                $img->setActive($element[1]);
+                $img = $em->getRepository('DecibelsGeneralBundle:Carrousel')->find($element->id); 
+                $img->setActive($element->active);
                 $em->persist($img);
             }
             
@@ -66,7 +66,7 @@ class CarrouselController extends Controller
         
         return $this->render('DecibelsGeneralBundle:Carrousel:changeImage.html.twig', array(
             'listImage' => $listImage,
-            'form' => $form
+            'form' => $form->createView()
         ));
     }
 }
