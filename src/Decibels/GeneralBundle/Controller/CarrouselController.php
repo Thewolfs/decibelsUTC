@@ -13,6 +13,11 @@ class CarrouselController extends Controller
 {
     public function addImageAction(Request $request) 
     {
+        if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ADMIN'))
+		{
+			throw new AccessDeniedException();
+		}
+        
         $carrousel = new Carrousel();
 		
 		$form = $this->get('form.factory')->create(new CarrouselType(), $carrousel);
@@ -35,6 +40,11 @@ class CarrouselController extends Controller
     
     public function changeImageAction(Request $request)
     {
+        if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ADMIN'))
+		{
+			throw new AccessDeniedException();
+		}
+        
         $em = $this->getDoctrine()->getManager();
         $listImage = $em->getRepository('DecibelsGeneralBundle:Carrousel')->findAllJoinFile();
         
