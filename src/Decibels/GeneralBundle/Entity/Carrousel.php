@@ -36,9 +36,8 @@ class Carrousel
     private $leftClip;
 
     /**
-     * @var picture
-     *
      * @ORM\OneToOne(targetEntity="Decibels\GeneralBundle\Entity\File")
+     * @ORM\JoinColumn(name="picture_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $picture;
     

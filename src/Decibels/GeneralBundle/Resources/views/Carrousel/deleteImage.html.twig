@@ -1,0 +1,11 @@
+{% extends '::layout.html.twig' %}
+
+{% block title %}Supprimer une image du carrousel - Décibels{% endblock %}
+
+{% block body %}
+	<p>Êtes-vous sur de vouloir supprimer cette image ?</p>
+	<form action="{{ path('decibels_carrousel_deleteImage', {'id' : image.id }) }}" method="POST">
+		<input type="submit" value="Supprimer" />
+		{{ form_rest(form) }}
+	</form>
+{% endblock %}

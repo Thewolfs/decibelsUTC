@@ -79,4 +79,38 @@ class CarrouselController extends Controller
             'form' => $form->createView()
         ));
     }
+    
+    public function deleteImageAction(Request $request, $id) 
+    {
+        if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ADMIN'))
+        {
+            throw new AccessDeniedException();
+        } 
+        
+        $em = $this->getDoctrine()->getManager();
+		
+		$image = $em->getRepository('DecibelsGeneralBundle:Carrousel')->find($id);
+		
+		if(null === $image)
+		{
+			throw new NotFoundHttpException("L'image spécifiée n'existe pas");
+		}
+		
+		$form = $this->createFormBuilder()->getForm();
+		
+		if($form->handleRequest($request)->isValid())
+		{
+			$em->remove($image);
+			$em->flush();
+			
+			$request->getSession()->getFlashBag()->add('notice', "L'image spécifiée a bien été supprimée");
+			
+			return $this->redirect($this->generateUrl('decibels_homepage'));
+		}
+        
+        return $this->render('DecibelsGeneralBundle:Carrousel:deleteImage.html.twig', array(
+            'form' => $form->createView(),
+            'image' => $image
+        ));
+    }
 }
