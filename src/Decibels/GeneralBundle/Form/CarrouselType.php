@@ -32,7 +32,7 @@ class CarrouselType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'Decibels\GeneralBundle\Entity\Carrousel',
-            'attr' => ['id' => 'carrousel_form']
+            'attr' => array('id' => 'carrousel_form')
         ));
     }
 
