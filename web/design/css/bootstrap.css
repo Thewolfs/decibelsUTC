@@ -59,7 +59,7 @@ input[type=range]::-webkit-slider-runnable-track {
     border: none;
     border-radius: 3px;
     padding: 0;
-    background-color: #591820;
+    background-color: #430506;
 }
 
 #left:hover, #right:hover
@@ -394,14 +394,14 @@ textarea {
 }
 
 a {
-  color: #591820;
+  color: #430506;
   text-decoration: none;
   font-weight: bold;
 }
 
 a:hover,
 a:focus {
-  color: #591820;
+  color: #430506;
   text-decoration: underline;
   font-weight: bold;
 }
@@ -558,7 +558,7 @@ h3,
 h4,
 .h4 {
   font-size: 18px;
-  color: #591820;
+  color: #430506;
   text-decoration: underline;
   font-weight: bold;
   margin-bottom: 12px;
@@ -664,7 +664,7 @@ cite {
 
 .page-header {
   height: 120px;
-  background-color: #591820;
+  background-color: #430506;
   position: fixed;
   top: 0;
   left: -15px;
@@ -1801,8 +1801,8 @@ th {
 
 .table-striped > tbody > tr:nth-child(odd) > td,
 .table-striped > tbody > tr:nth-child(odd) > th {
-  background-color: #591820;
-  color: #FFEB3B;
+  background-color: #430506;
+  color: #E9E508;
 }
 
 .table-hover > tbody > tr:hover > td,
@@ -4198,7 +4198,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 .nav > li > a:hover,
 .nav > li > a:focus {
   text-decoration: none;
-  background-color: #A8394A;
+  background-color: #8F191B;
 }
 
 .nav > li.disabled > a {
