@@ -1,0 +1,98 @@
+@media (min-width: 1050px)  {
+    main, .second-nav {
+        padding-left: 100px;   
+    }
+}
+
+@media (max-width: 1050px) {
+    .primary-nav {
+        display: none;
+    }
+    
+    #carousel {
+        display: none;
+    }
+}
+
+.primary-nav {
+    width: 100px;
+    z-index: 999;
+}
+
+.primary-nav > ul > li > a {
+    margin: 0;
+    height: 100px;
+    width: 100px;
+    line-height: 50px;
+    text-align: center;
+    padding: 0;
+    padding-top: 50px;
+}
+
+.primary-nav > ul > li > a > span {
+    font-size: 35px;
+    display: block;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 25px;
+    left: 25px;
+}
+
+.primary-nav > ul > li > .active {
+    background: #f3f3f3;
+    color: #430506;
+}
+
+.primary-nav > ul > li > .active:hover {
+    background: #f3f3f3;
+    color: #430506;
+    cursor: default;
+}
+
+.primary-nav > .navbar-header {
+    height: 90px;
+    background: #8F191B;
+}
+
+.primary-nav > .navbar-header > .navbar-brand {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    height: 90px;
+    width: 100px;
+}
+
+.second-nav {
+    z-index: 998;
+    height: 90px;
+    border: none;
+}
+
+.second-nav > ul {
+    float: right;
+}
+
+.second-nav > ul > li > a {
+    margin: 0;
+    height: 90px;
+    width: 80px;
+    line-height: 90px;
+    text-align: center;
+    padding: 0;
+    font-size: 35px;
+    top: 0;
+}
+
+main {
+    margin-top: 100px;
+}
+
+.info {
+    width: 300px;
+    height: 350px;
+    background: #430506;
+    top: 90px;
+    right: 0;
+    position: absolute;
+    z-index: 998;
+}
