@@ -100,6 +100,8 @@ class NewsController extends Controller
         $form->add('Modifier', 'submit');
         
         if ($form->handleRequest($request)->isValid()) {
+            $image = $em->getRepository('DecibelsGeneralBundle:File')->find($request->request->get('file_id'));
+            $entity->setPicture($image);
             $em->flush();
 
             return $this->redirect($this->generateUrl('decibels_news_edit', array('id' => $id)));
