@@ -18,6 +18,7 @@ class RealisationType extends AbstractType
             ->add('nom')
             ->add('description')
             ->add('url')
+            ->add('event')
 			->add('Enregistrer', 'submit')
         ;
     }

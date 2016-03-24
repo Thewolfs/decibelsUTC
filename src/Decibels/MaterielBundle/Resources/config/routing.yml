@@ -29,3 +29,8 @@ decibels_materiel_delete:
         id: \d+
     methods: [GET|POST]
 
+decibels_materiel_showSpecifics:
+    path:     /decibels/materiel/showSpecifics
+    defaults: { _controller: DecibelsMaterielBundle:Default:showSpecifics }
+    methods: [POST]
+

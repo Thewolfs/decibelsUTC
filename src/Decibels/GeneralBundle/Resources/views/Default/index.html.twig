@@ -2,70 +2,85 @@
 
 {% block title %}Nos réalisations - Décibels{% endblock %}
 
+{% block tabs %}
+    <ul class="nav row">
+        <li class="col-md-6 col-sm-6 text-center">
+            <a id="event" class="active">Live</a>
+        </li>
+        <li class="col-md-6 col-sm-6 text-center">
+            <a id="mao">Studio</a>
+        </li>
+    </ul>
+{% endblock %}
+
 {% block body %}
-	<div>
-		<a id="event" style="border-bottom: 1px solid #591820; text-align: center; background-color: #591820; color: #FFEB3B; width: 75px;  height: 30px; display: inline-block; text-decoration: none; cursor: pointer;">Live</a></span>
-		<a id="mao" style="border-bottom: 1px solid #591820; text-align: center; width: 75px; height: 30px;  display: inline-block; text-decoration: none; cursor: pointer;">Studio</a></span>
-	</div>
-	<div id="eventBox" style="position: absolute;">
-		{% set state = 0 %}
-		{% for rea in listRea %}
-			{% if rea.event %}
-			{% if not state %} 
-				<div class="row">
-				{% set state = state + 1 %}
-			{% endif %}
-				<div class="col-md-6 col-sm-12">
-					<div class="card card-content">
-						<h4>{{ rea.nom }}</h4>
-						{{ rea.description|raw }}
-						{% if rea.url %}
-						<div class="text-right">
-							<a href="{{ rea.url }}" style="color: #591820;"><span class ='glyphicon glyphicon-chevron-right' style="top: 2px;"></span> Voir la réalisation</a>
-						</div>
-						{% endif %}
-					</div>
-				</div>
-			{% if state == 2 %} 
-				</div>
-				{% set state = 0 %}
-			{% endif %}
-			{% endif %}
-		{% endfor %}
-		{% if state %} 
-			</div>
-			{% set state = 0 %}
-		{% endif %}
-	</div>
-	<div id="MAOBox" style="position: absolute;">
-		{% for rea in listRea %}
-			{% if not rea.event %}
-			{% if not state %} 
-				<div class="row">
-				{% set state = state + 1 %}
-			{% endif %}
-				<div class="col-md-6 col-sm-12">
-					<div class="card">
-					<h4>{{ rea.nom }}</h4>
-					{{ rea.description|raw }}
-					{% if rea.url %}
-					<div class="text-right">
-						<iframe width="100%" height="110" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url={{ rea.url }}&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
-					</div>
-					{% endif %}
-					</div>
-				</div>
-		{% if state == 0 %} 
+    <div class="row">
+        <div class="col-md-12">
+            <div id="eventBox">
+            {% set state = 0 %}
+            {% for rea in listRea %}
+                {% if rea.event %}
+                {% if not state %} 
+                    <div class="row">
+                    {% set state = state + 1 %}
+                {% endif %}
+                        <div class="col-md-6 col-sm-12">
+                            <div class="card">
+                                <div class="card-content">
+                                    <h4 class="text-center">{{ rea.nom }}</h4>
+                                    {{ rea.description|raw }}
+                                    {% if rea.url %}
+                                    <div class="card-button text-center">
+                                        <a href="{{ rea.url }}">Voir la réalisation</a>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                {% if state == 2 %} 
+                    </div>
+                    {% set state = 0 %}
+                {% endif %}
+                    {% endif %}
+			{% endfor %}
+                {% if state %} 
+                    </div>
+                    {% set state = 0 %}
+                {% endif %}
+            </div>
+            <div id="MAOBox">
+			{% for rea in listRea %}
+				{% if not rea.event %}
+				{% if not state %} 
+					<div class="row">
+					{% set state = state + 1 %}
+				{% endif %}
+                        <div class="col-md-6 col-sm-12">
+                            <div class="card">
+								<div class="card-content">
+									<h4 class="text-center">{{ rea.nom }}</h4>
+									{{ rea.description|raw }}
+									{% if rea.url %}
+									<div class="text-right">
+										<iframe width="100%" height="110" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url={{ rea.url }}&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
+									</div>
+									{% endif %}
+								</div>
+                            </div>
+                        </div>
+                {% if state == 0 %} 
 					</div>
 					{% set state = 0 %}
 				{% endif %}
-			{% endif %}
-		{% endfor %}
-		{% if state %} 
-			</div>
-			{% set state = 0 %}
-		{% endif %}
-	</div>
+				{% endif %}
+			{% endfor %}
+                {% if state %} 
+                    </div>
+                    {% set state = 0 %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block javascript %}
@@ -76,24 +91,16 @@
 			e.preventDefault();
 			$("#MAOBox").fadeOut(100);
 			$("#eventBox").fadeIn(100);
-			
-			$("#event").css("background-color", "#591820");
-			$("#event").css("color", "#FFEB3B");
-			
-			$("#mao").css("background-color", "#F3F3F3");
-			$("#mao").css("color", "#591820");
+            $("#mao").removeClass("active");
+            $("#event").addClass("active");
 		});
 		
 		$("#mao").click(function (e) {
 			e.preventDefault();
 			$("#eventBox").fadeOut(100);
 			$("#MAOBox").fadeIn(100);
-			
-			$("#mao").css("background-color", "#591820");
-			$("#mao").css("color", "#FFEB3B");
-			
-			$("#event").css("background-color", "#F3F3F3");
-			$("#event").css("color", "#591820");
+            $("#event").removeClass("active");
+            $("#mao").addClass("active");
 		});
 	</script>
 {% endblock %}

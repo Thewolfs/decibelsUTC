@@ -19,13 +19,28 @@
 </head>
 <body>
 	<div id="fb-root"></div>
-	<script>(function(d, s, id) {
-	var js, fjs = d.getElementsByTagName(s)[0];
-	if (d.getElementById(id)) return;
-	js = d.createElement(s); js.id = id;
-	js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.5";
-	fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));</script>
+	<script>
+		(function(d, s, id) {
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) return;
+		js = d.createElement(s); js.id = id;
+		js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.5";
+		fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+	</script>
+	<div id="overlayBackground">
+		<div id="overlayBox" class="col-md-offset-2 col-md-8 col-sm-12">
+			<div class="card">
+				<div class="card-content">
+					<i id="overlaySpinner" class="fa fa-circle-o-notch fa-spin hidden"></i>
+					<div id="overlayContent"></div>
+					<div class="card-button text-center hidden">
+						<a href="">Fermer</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 	<nav class="navbar navbar-inverse navbar-fixed-top primary-nav" style="height: 100%;">
 		<div class="navbar-header">
 			<a class="navbar-brand" href="{{ path('decibels_homepage') }}">
@@ -64,17 +79,25 @@
 		</ul>
 	</nav>
 	<nav class="navbar navbar-inverse navbar-fixed-top second-nav">
-		<ul class="nav navbar-nav">
-			<li><a class="fa fa-play-circle"></a></li>
-			<div id="player" class="info" style="display: none; border: 1px solid #430506;">
-				<iframe width="100%" height="348"scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/194757938%3Fsecret_token%3Ds-2YNuU&amp;auto_play=false&amp;hide_related=true&amp;show_comments=true&amp;show_user=false&amp;show_reposts=false&amp;visual=true"></iframe>
-			</div>
-			<li><a class="glyphicon glyphicon-envelope"></a></li>
-			<li><a class="glyphicon glyphicon-user"></a></li>
-			<div id="user" class="info" style="display: none;">
-				
-			</div>
-		</ul>
+        <div class="container-fluid" style="margin-left: 100px;">
+            <div class="row">
+                <div class="col-md-9 tabs">
+                {% block tabs %}
+                {% endblock %}
+                </div>
+                <ul class="nav navbar-nav navbar-right col-md-3">
+                    <li><a class="fa fa-play-circle"></a></li>
+                    <div id="player" class="info" style="display: none; border: 1px solid #430506;">
+                        <iframe width="100%" height="348"scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/194757938%3Fsecret_token%3Ds-2YNuU&amp;auto_play=false&amp;hide_related=true&amp;show_comments=true&amp;show_user=false&amp;show_reposts=false&amp;visual=true"></iframe>
+                    </div>
+                    <li><a class="glyphicon glyphicon-envelope"></a></li>
+                    <li><a class="glyphicon glyphicon-user"></a></li>
+                    <div id="user" class="info" style="display: none;">
+                        
+                    </div>
+                </ul>
+            </div>
+        </div>
 	</nav>
 	<main>
 		<div class="contenu">
@@ -95,7 +118,6 @@
 				</div>
 				<footer class="row">
 				</footer>
-				{% block javascript %}{% endblock %}
 				{{ tinymce_init() }}
 				<script>
 					$(".nav > li > .fa-play-circle").click(function () {
@@ -117,7 +139,33 @@
 							$("#player").fadeOut(400);
 						}
 					});
+					
+					$("#overlayBox").slideUp(0);
+					
+					var overlayToggle = function (caller, callerFunc) {
+						$(caller).click(function () {
+							callerFunc(this);
+							$("#overlayBackground").fadeIn(100);
+							$("#overlayBox").delay(100).slideDown();
+						});
+					};
+						
+					$("#overlayBackground").click(function () {
+						$("#overlayBox").slideUp();
+						$("#overlayBackground").delay(400).fadeOut(100);
+						if(!($("#overlayBox > .card > .card-content > .card-button").hasClass("hidden"))) {
+							$("#overlayBox > .card > .card-content > .card-button").delay(400).addClass("hidden")
+						}
+						$("#overlayContent").delay(400).html("");
+					});
+					
+					$("#overlayBox > .card > .card-content > .card-button > a").click(function (e) {
+						e.preventDefault();
+						$("#overlayBox").slideUp();
+						$("#overlayBackground").delay(400).fadeOut(100);
+					});
 				</script>
+				{% block javascript %}{% endblock %}
 			</div>
 		</div>
 	</main>

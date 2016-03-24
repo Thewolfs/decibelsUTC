@@ -3,52 +3,91 @@
 {% block title %}Liste du matériel - Décibels{% endblock %}
 
 {% block body %}
-	<table class="table-bordered">
-		<tr style="font-size: 18px; color: #FFEB3B; background-color: #591820;" class="row">
-			{% if app.user %}
-				{% if app.user.roles[0] == 'ROLE_ADMIN' %}
-					<th class="col-md-3 text-center">Nom</th>
-					<th class="col-md-2 text-center">Type</th>
-					<th class="col-md-2 text-center">Caution</th>
-					<th class="col-md-3 text-center">Disponible</th>
-					<th class="col-md-1"></th>
-					<th class="col-md-1"></th>
-				{% else %}
-					<th class="col-md-3 text-center">Nom</th>
-					<th class="col-md-3 text-center">Type</th>
-					<th class="col-md-3 text-center">Caution</th>
-					<th class="col-md-3 text-center">Disponible</th>
-				{% endif %}
-			{% else %}
-				<th class="col-md-3 text-center">Nom</th>
-				<th class="col-md-3 text-center">Type</th>
-				<th class="col-md-3 text-center">Caution</th>
-				<th class="col-md-3 text-center">Disponible</th>
-			{% endif %}
-		</tr>
-		{% for materiel in materiels %}
-			<tr class="row">
-				{% if app.user %}
-					{% if app.user.roles[0] == 'ROLE_ADMIN' %}
-						<td class="col-md-3">{{ materiel.nom }}</td>
-						<td class="col-md-2">{{ materiel.type }}</td>
-						<td class="col-md-2 text-center">{{ materiel.prix }}</td>
-						<td class="col-md-3 text-center">{{ materiel.maxNum }}</td>
-						<td class="col-md-1 text-center"><a style="color: #591820;" href="{{ path('decibels_materiel_edit', {'id': materiel.id }) }}"><span class="glyphicon glyphicon-edit"></a></span></td>
-						<td class="col-md-1 text-center"><a style="color: #591820;" href="{{ path('decibels_materiel_delete', {'id': materiel.id }) }}"><span class="glyphicon glyphicon-remove"></a></span></td>
-					{% else %}
-						<td class="col-md-3">{{ materiel.nom }}</td>
-						<td class="col-md-3">{{ materiel.type }}</td>
-						<td class="col-md-3 text-center">{{ materiel.prix }}</td>
-						<td class="col-md-3 text-center">{{ materiel.maxNum }}</td>
-					{% endif %}
-				{% else %}
-					<td class="col-md-3">{{ materiel.nom }}</td>
-					<td class="col-md-3">{{ materiel.type }}</td>
-					<td class="col-md-3 text-center">{{ materiel.prix }}</td>
-					<td class="col-md-3 text-center">{{ materiel.maxNum }}</td>
-				{% endif %}
-			</tr>
-		{% endfor %}
-	</table>
+	<div class="card">
+		<div class="card-content">
+			<h3 class="text-center">Matériel empruntable</h3>
+			<table class="table table-hover">
+				<thead>
+					<tr class="row">
+						{% if app.user %}
+							{% if app.user.roles[0] == 'ROLE_ADMIN' %}
+								<th class="col-md-3 text-center">Nom</th>
+								<th class="col-md-3 text-center">Type</th>
+								<th class="col-md-2 text-center">Caution (€)</th>
+								<th class="col-md-2 text-center">Disponible</th>
+								<th class="col-md-2 text-center" colspan="2">Admin</th>
+							{% else %}
+								<th class="col-md-3 text-center">Nom</th>
+								<th class="col-md-3 text-center">Type</th>
+								<th class="col-md-3 text-center">Caution (€)</th>
+								<th class="col-md-3 text-center">Disponible</th>
+							{% endif %}
+						{% else %}
+							<th class="col-md-3 text-right">Nom</th>
+							<th class="col-md-3 text-right">Type</th>
+							<th class="col-md-3 text-right">Caution (€)</th>
+							<th class="col-md-3 text-right">Disponible</th>
+						{% endif %}
+					</tr>
+				</thead>
+				<tbody>
+				{% for materiel in materiels %}
+					<tr class="row" data-id="{{ materiel.id }}">
+						{% if app.user %}
+							{% if app.user.roles[0] == 'ROLE_ADMIN' %}
+								<td class="col-md-3">{{ materiel.nom }}</td>
+								<td class="col-md-3 text-right">{{ materiel.type }}</td>
+								<td class="col-md-2 text-right">{{ materiel.prix }}</td>
+								<td class="col-md-2 text-right">{{ materiel.maxNum }}</td>
+								<td class="col-md-1 text-center"><a style="color: #591820;" href="{{ path('decibels_materiel_edit', {'id': materiel.id }) }}"><span class="glyphicon glyphicon-edit"></span></a></td>
+								<td class="col-md-1 text-center"><a style="color: #591820;" href="{{ path('decibels_materiel_delete', {'id': materiel.id }) }}"><span class="glyphicon glyphicon-remove"></span></a></td>
+							{% else %}
+								<td class="col-md-3">{{ materiel.nom }}</td>
+								<td class="col-md-3">{{ materiel.type }}</td>
+								<td class="col-md-3 text-right">{{ materiel.prix }}</td>
+								<td class="col-md-3 text-right">{{ materiel.maxNum }}</td>
+							{% endif %}
+						{% else %}
+							<td class="col-md-3">{{ materiel.nom }}</td>
+							<td class="col-md-3">{{ materiel.type }}</td>
+							<td class="col-md-3 text-right">{{ materiel.prix }}</td>
+							<td class="col-md-3 text-right">{{ materiel.maxNum }}</td>
+						{% endif %}
+					</tr>
+				{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+{% endblock %}
+
+{% block javascript %}
+	<script>
+		var overlayFunc = function (elem) {
+			var $row = $(elem).parent();
+			var id = $row.data("id");
+			console.log(id)
+			
+			$.ajax({
+				url: '{{ path("decibels_materiel_showSpecifics") }}',
+				type: 'POST',
+				data : { id: id },
+				success : function (data) {
+					$("#overlayBox > .card > .card-content > .card-button").removeClass("hidden");
+					$("#overlaySpinner").addClass("hidden");
+					var HTMLContent = "<h3 class='text-center'>"+data.nom+"</h3>"+data.description;
+					$("#overlayContent").html(HTMLContent) 
+				},
+				xhr: function () {
+					var xhr = new window.XMLHttpRequest();
+					xhr.addEventListener("progress", function (e) {
+						$("#overlaySpinner").removeClass("hidden");
+					});
+					return xhr;
+				}
+			})
+		}
+		
+		overlayToggle("td", overlayFunc);
+	</script>
 {% endblock %}

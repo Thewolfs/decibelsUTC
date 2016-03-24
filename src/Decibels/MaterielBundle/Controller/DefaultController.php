@@ -8,6 +8,7 @@ use Decibels\MaterielBundle\Entity\Materiel;
 use Decibels\MaterielBundle\Form\MaterielType;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class DefaultController extends Controller
 {
@@ -122,5 +123,24 @@ class DefaultController extends Controller
 		'form' => $form->createView(),
 		'materiel' => $materiel
 		));
+	}
+	
+	public function showSpecificsAction(Request $request) {
+		
+		$em = $this->getDoctrine()->getManager();
+		
+		$id = $request->request->get('id');
+		
+		$entity = $em->getRepository("DecibelsMaterielBundle:Materiel")->find($id);
+		
+		if($entity !== null) {
+			return new JSONResponse(array(
+				'id' => $entity->getId(),
+				'nom' => $entity->getNom(),
+				'description' => $entity->getDescription()
+            ));
+		}
+		
+		return new JSONResponse(array(), 400);
 	}
 }
