@@ -15,7 +15,7 @@
 
 {% block textarea_widget %}
 {% spaceless %}
-    <textarea class="form-control tinymce" rows="10" {{ block('widget_attributes') }}>{{ value }}</textarea>
+    <textarea class="form-control tinymce" {{ block('widget_attributes') }}>{{ value }}</textarea>
 {% endspaceless %}
 {% endblock textarea_widget %}
 
@@ -30,7 +30,7 @@
     {% if label is empty %}
         {% set label = name|humanize %}
     {% endif %}
-    <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ label|trans({}, translation_domain) }} :</label>
+    <label class="hidden" {% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ label|trans({}, translation_domain) }} :</label>
 {% endif %}
 {% endblock form_label %}
 
@@ -45,5 +45,7 @@
             {% set label = name|humanize %}
         {%- endif -%}
     {%- endif -%}
-    <button type="{{ type|default('button') }}" {{ block('button_attributes') }} class="col-md-offset-5 col-md-2 btn btn-default">{{ label|trans({}, translation_domain) }}</button>
+	<div class="card-button text-center">
+    	<button type="{{ type|default('button') }}" {{ block('button_attributes') }} >{{ label|trans({}, translation_domain) }}</button>
+	</div>
 {%- endblock button_widget -%}

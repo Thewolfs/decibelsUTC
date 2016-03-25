@@ -148,10 +148,23 @@ class DefaultController extends Controller
 	public function contactAction(Request $request)
 	{
 		$data = array();
-		$form = $this->createFormBuilder($data)
-					 ->add('email', 'email', array('label' => 'Votre e-mail'))
-					 ->add('sujet', 'text', array('label' => 'Sujet'))
-					 ->add('demande', 'textarea', array('label' => 'Votre demande'))
+		$form = $this->createFormBuilder($data, array('attr' => array('id' => 'form-contact')))
+					 ->add('email', 'email', array(
+						 'label' => 'Votre e-mail', 
+						 'attr' => array(
+						 	'placeholder' => 'Votre e-mail'
+					 )))
+					 ->add('sujet', 'text', array(
+						 'label' => 'Sujet', 
+						 'attr' => array(
+						 	'placeholder' => 'Sujet'
+					 )))
+					 ->add('demande', 'textarea', array(
+						 'label' => 'Votre demande', 
+						 'attr' => array(
+						 	'placeholder' => 'Votre demande',
+							'rows' => 5
+					 )))
 					 ->add('Envoyer', 'submit')
 					 ->getForm();
 		
@@ -165,9 +178,15 @@ class DefaultController extends Controller
 				->setTo('decibels.asso.utc@gmail.com')
 				->setBody($data['demande']);
 			
-			$this->get('mailer')->send($message);
+			if($this->get('mailer')->send($message)) {
+				return new JsonResponse(array(
+				'success' => true
+            ));
+			}
 			
-			$request->getSession()->getFlashBag()->add('notice', 'Demande envoyée');
+			return new JsonResponse(array(
+				'success' => false
+            ));
 		}
 		
 		return $this->render('DecibelsGeneralBundle:Default:contact.html.twig', array('form' => $form->createView()));
