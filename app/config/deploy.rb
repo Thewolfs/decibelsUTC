@@ -22,7 +22,7 @@ set  :use_composer, true
 set  :composer_bin,  "/sites/decibels/composer.phar"
 set  :composer_options, "--verbose --working-dir=#{release_path} --optimize-autoloader "
 
-set  :shared_children, [app_path + "/logs", web_path + "/uploads", web_path + "/uploads/carrousel", web_path + "/uploads/news", "vendor"]
+set  :shared_children, [app_path + "/logs", web_path + "/uploads", "vendor"]
 set  :shared_files, [app_path + "/config/custom.yml"]
 
 namespace :symfony do
