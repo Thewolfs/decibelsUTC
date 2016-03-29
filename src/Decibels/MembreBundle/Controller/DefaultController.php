@@ -19,7 +19,7 @@ class DefaultController extends Controller
 	
 	public function logoutAction(Request $request)
 	{		
-		$session = new Session();
+		$session = $request->getSession();
 		$session->clear();
 		$this->container->get('security.context')->setToken(null);
 		
