@@ -23,7 +23,7 @@ class DefaultController extends Controller
 		$session->clear();
 		$this->container->get('security.context')->setToken(null);
 		
-		return $this->redirect('https://cas.utc.fr/cas/logout?service=http://'.$request->server->get('HTTP_HOST').$this->get('router')->generate('decibels_homepage');
+		return $this->redirect('https://cas.utc.fr/cas/logout?service=http://'.$request->server->get('HTTP_HOST').$this->get('router')->generate('decibels_homepage'));
 	}
 	
 	public function loginCheckAction(Request $request)
