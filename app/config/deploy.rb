@@ -38,5 +38,7 @@ end
 before "symfony:cache:warmup", "symfony:doctrine:migrations:diff"
 before "symfony:cache:warmup", "symfony:doctrine:migrations:migrate"
 
+after "deploy:restart", "deploy:cleanup"
+
 # Be more verbose by uncommenting the following line
 # logger.level = Logger::MAX_LEVEL
