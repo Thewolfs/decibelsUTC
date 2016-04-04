@@ -1,3 +1,7 @@
+decibels_formation:
+    resource: "@DecibelsFormationBundle/Resources/config/routing.yml"
+    prefix:   /
+
 decibels_realisation:
     resource: "@DecibelsAchievementBundle/Resources/config/routing.yml"
     prefix:   /

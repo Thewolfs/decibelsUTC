@@ -1,0 +1,3 @@
+decibels_formation_list:
+    path:     /decibels/formation
+    defaults: { _controller: DecibelsFormationBundle:Default:list }
