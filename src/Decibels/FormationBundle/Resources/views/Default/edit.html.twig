@@ -1,0 +1,22 @@
+{% extends "::layout.html.twig" %}
+
+{% block title %}Nos Formations - Décibels{% endblock title %}
+
+{% form_theme form _self %}
+
+{% block textarea_widget %}
+	{% spaceless %}
+		<textarea class="form-control" {{ block('widget_attributes') }}>{{ value }}</textarea>
+	{% endspaceless %}
+{% endblock textarea_widget %}
+
+{% block body %}
+	<div class="row">
+        <div class="col-md-12 card">
+            <div class="card-content">
+				<h4>Modifier une formation</h4>
+				{{ form(form) }}
+			</div>
+        </div>
+    </div>
+{% endblock body %}

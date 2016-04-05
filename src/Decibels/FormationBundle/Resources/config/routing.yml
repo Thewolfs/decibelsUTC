@@ -1,3 +1,16 @@
 decibels_formation_list:
     path:     /decibels/formation
     defaults: { _controller: DecibelsFormationBundle:Default:list }
+    methods: [GET]
+
+decibels_formation_add:
+    path:     /decibels/formation/ajouter
+    defaults: { _controller: DecibelsFormationBundle:Default:add }
+    methods: [GET|POST]
+
+decibels_formation_edit:
+    path:     /decibels/formation/modifier/{id}
+    defaults: { _controller: DecibelsFormationBundle:Default:edit }
+    methods: [GET|POST]
+    requirements: 
+        id: \d+

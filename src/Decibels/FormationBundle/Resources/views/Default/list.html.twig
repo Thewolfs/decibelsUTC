@@ -2,6 +2,143 @@
 
 {% block title %}Nos Formations - Décibels{% endblock title %}
 
+{% block tabs %}
+    <ul class="nav row">
+        <li class="col-md-4 col-sm-4 text-center">
+            <a id="sono" class="active">Sono</a>
+        </li>
+        <li class="col-md-4 col-sm-4 text-center">
+            <a id="light">Light</a>
+        </li>
+		<li class="col-md-4 col-sm-4 text-center">
+            <a id="mao">MAO</a>
+        </li>
+    </ul>
+{% endblock %}
+
 {% block body %}
-	
+	<div class="row">
+        <div class="col-md-12">
+            <div id="sonoBox">
+            {% set state = 0 %}
+            {% for formation in listFormation %}
+                {% if formation.type == 0 %}
+                {% if not state %} 
+                    <div class="row">
+                    {% set state = state + 1 %}
+                {% endif %}
+                        <div class="col-md-6 col-sm-12">
+                            <div class="card">
+                                <div class="card-content">
+                                    <h4 class="text-center">{{ formation.titre }}</h4>
+                                    {{ formation.description|raw }}
+									<a href="{{ formation.file.path }}">Voir la formation</a>
+                                </div>
+                            </div>
+                        </div>
+                {% if state == 2 %} 
+                    </div>
+                    {% set state = 0 %}
+                {% endif %}
+                    {% endif %}
+			{% endfor %}
+                {% if state %} 
+                    </div>
+                    {% set state = 0 %}
+                {% endif %}
+            </div>
+			
+            <div id="lightBox">
+			{% for formation in listFormation %}
+				{% if formation.type == 1 %}
+				{% if not state %} 
+					<div class="row">
+					{% set state = state + 1 %}
+				{% endif %}
+                        <div class="col-md-6 col-sm-12">
+                            <div class="card">
+								<div class="card-content">
+									<h4 class="text-center">{{ formation.titre }}</h4>
+									{{ formation.description|raw }}
+									<a href="{{ formation.file.path }}">Voir la formation</a>
+								</div>
+                            </div>
+                        </div>
+                {% if state == 0 %} 
+					</div>
+					{% set state = 0 %}
+				{% endif %}
+				{% endif %}
+			{% endfor %}
+                {% if state %} 
+                    </div>
+                    {% set state = 0 %}
+                {% endif %}
+            </div>
+			 <div id="MAOBox">
+			{% for formation in listFormation %}
+				{% if formation.type == 2 %}
+				{% if not state %} 
+					<div class="row">
+					{% set state = state + 1 %}
+				{% endif %}
+                        <div class="col-md-6 col-sm-12">
+                            <div class="card">
+								<div class="card-content">
+									<h4 class="text-center">{{ formation.titre }}</h4>
+									{{ formation.description|raw }}
+									<a href="{{ formation.file.path }}">Voir la formation</a>
+								</div>
+                            </div>
+                        </div>
+                {% if state == 0 %} 
+					</div>
+					{% set state = 0 %}
+				{% endif %}
+				{% endif %}
+			{% endfor %}
+                {% if state %} 
+                    </div>
+                    {% set state = 0 %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
 {% endblock body %}
+
+{% block javascript %}
+	<script>
+		$("#MAOBox").fadeOut(0);
+		$("#lightBox").fadeOut(0);
+		
+		$("#sono").click(function (e) {
+			e.preventDefault();
+			$("#MAOBox").fadeOut(100);
+			$("#lightBox").fadeOut(100);
+			$("#sonoBox").fadeIn(100);
+            $("#mao").removeClass("active");
+            $("#light").removeClass("active");
+            $("#sono").addClass("active");
+		});
+		
+		$("#light").click(function (e) {
+			e.preventDefault();
+			$("#sonoBox").fadeOut(100);
+			$("#MAOBox").fadeOut(100);
+			$("#lightBox").fadeIn(100);
+            $("#mao").removeClass("active");
+            $("#sono").removeClass("active");
+            $("#light").addClass("active");
+		});
+		
+		$("#mao").click(function (e) {
+			e.preventDefault();
+			$("#sonoBox").fadeOut(100);
+			$("#lightBox").fadeOut(100);
+			$("#MAOBox").fadeIn(100);
+            $("#sono").removeClass("active");
+            $("#light").removeClass("active");
+            $("#mao").addClass("active");
+		});
+	</script>
+{% endblock %}
