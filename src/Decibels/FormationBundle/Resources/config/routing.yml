@@ -14,3 +14,10 @@ decibels_formation_edit:
     methods: [GET|POST]
     requirements: 
         id: \d+
+
+decibels_formation_delete:
+    path:     /decibels/formation/supprimer/{id}
+    defaults: { _controller: DecibelsFormationBundle:Default:delete }
+    methods: [GET|POST]
+    requirements: 
+        id: \d+

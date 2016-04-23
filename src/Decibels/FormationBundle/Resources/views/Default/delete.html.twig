@@ -1,0 +1,18 @@
+{% extends "::layout.html.twig" %}
+
+{% block title %}Nos Formations - Décibels{% endblock title %}
+
+{% block body %}
+	<div class="row">
+        <div class="col-md-12 card">
+            <div class="card-content">
+				<h4>Supprimer une formation</h4>
+                    <p>Êtes-vous sur de vouloir supprimer cette image ?</p>
+                    <form action="{{ path('decibels_formation_delete', {'id' : formation.id }) }}" method="POST">
+                        <input type="submit" value="Supprimer" />
+                        {{ form_rest(form) }}
+                    </form>
+			</div>
+        </div>
+    </div>
+{% endblock body %}
