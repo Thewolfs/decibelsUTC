@@ -5,13 +5,13 @@
 {% block tabs %}
     <ul class="nav row">
         <li class="col-md-4 col-sm-4 text-center">
-            <a id="sono" class="active">Sono</a>
+            <a id="sono" class="active" href="">Sono</a>
         </li>
         <li class="col-md-4 col-sm-4 text-center">
-            <a id="light">Light</a>
+            <a id="light" href="">Light</a>
         </li>
 		<li class="col-md-4 col-sm-4 text-center">
-            <a id="mao">MAO</a>
+            <a id="mao" href="">MAO</a>
         </li>
     </ul>
 {% endblock %}
@@ -32,7 +32,9 @@
                                 <div class="card-content">
                                     <h4 class="text-center">{{ formation.titre }}</h4>
                                     {{ formation.description|raw }}
-									<a href="{{ formation.file.path }}">Voir la formation</a>
+                                    <div class="card-button text-center">
+									    <a href="{{ asset('uploads/formation/' ~ formation.file.name) }}">Voir la formation</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -60,7 +62,9 @@
 								<div class="card-content">
 									<h4 class="text-center">{{ formation.titre }}</h4>
 									{{ formation.description|raw }}
-									<a href="{{ formation.file.path }}">Voir la formation</a>
+                                    <div class="card-button text-center">
+									    <a href="{{ asset('uploads/formation/' ~ formation.file.name) }}">Voir la formation</a>
+                                    </div>
 								</div>
                             </div>
                         </div>
@@ -87,7 +91,9 @@
 								<div class="card-content">
 									<h4 class="text-center">{{ formation.titre }}</h4>
 									{{ formation.description|raw }}
-									<a href="{{ formation.file.path }}">Voir la formation</a>
+                                    <div class="cadr-button">
+									    <a href="{{ asset('uploads/formation/' ~ formation.file.name) }}">Voir la formation</a>
+                                    </div>
 								</div>
                             </div>
                         </div>

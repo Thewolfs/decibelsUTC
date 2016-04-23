@@ -228,7 +228,7 @@ main {
 	border-top: 1px solid #eee;
 }
 
-.card-button > a, .card-button > button {
+.card-button > a, .card-button > button, .card-button > label {
     padding: 7px 20px;
     display: inline-block;
     margin: 20px;

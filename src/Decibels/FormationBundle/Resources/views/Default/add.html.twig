@@ -10,6 +10,26 @@
 	{% endspaceless %}
 {% endblock textarea_widget %}
 
+{% block fileUpload_widget %}
+    {% spaceless %}
+        <div>
+			<div class="card-button row">
+				<label for="file" class="col-md-3 text-center">
+					<i class="glyphicon glyphicon-picture"></i>
+					Choisir un fichier
+				</label>
+				<div id="file_name" class="col-md-8"></div>
+            	<input id="file" class="ajax_file hidden" type="file" data-target="{{ path('decibels_file_uploadFile') }}">
+			</div>
+
+            <div class="progress hidden" style="height: 5px; width: 80%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                <div class="progress-bar progress-bar-success" style="background-color: #FFEB3B;"></div>
+            </div>
+            <input id="file_id" name="file_id" type="hidden">
+        </div>
+    {% endspaceless %}
+{% endblock fileUpload_widget %}
+
 {% block body %}
 	<div class="row">
         <div class="col-md-12 card">
@@ -20,3 +40,61 @@
         </div>
     </div>
 {% endblock body %}
+
+{% block javascript %}
+<script>
+	$('.ajax_file').on('change', function(){
+        var $this = $(this);
+        var $loadingBar = $this.siblings('.progress').children();
+        var $fileName = $("#file_name");
+        var $input = $('#file_id');
+		console.log($input);
+
+        var file = $this[0].files[0];
+		$fileName.text(file.name);
+        var baseUrl = "{{ asset('') }}";
+        $loadingBar.parent().removeClass('hidden');
+        
+        var data = new FormData();
+        data.append('fileUpload[file]', file);
+        data.append('webDirPath', '/formation');
+        
+        $.ajax({
+            type: 'POST',
+            url: $this.data('target'),
+            data: data,
+            contentType: false,
+            processData: false,
+            xhr: function()
+            {
+                var xhr = $.ajaxSettings.xhr();
+
+                xhr.upload.addEventListener("progress", function(e){
+                    $loadingBar.css('width', e.loaded / e.total * 100 + '%');
+                }, false);
+
+                return xhr;
+            },
+            success: function(response){
+                $loadingBar
+                    .css('width', '100%').parent().fadeOut(100);
+                $input.val(response.id);                 
+                 $('button[type="submit"]').removeClass('hidden');                 
+                
+                $this.remove();
+            },
+            error: function(response){
+                $loadingBar
+                    .css('width', '100%')
+                    .removeClass('progress-bar-success')
+                    .css("backgroundColor", '#591820');
+                $("#output")
+                    .html('Erreur')
+                    .css("color", '#591820')
+                    .removeClass('hidden');
+                $this.remove();
+            }
+        });
+    });
+</script>
+{% endblock %}
