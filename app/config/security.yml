@@ -22,9 +22,8 @@ security:
             stateless: false
             anonymous: true
             cas:
-                check_path: /decibels/admin/logincheck
+                check_path: /decibels/logincheck
                 login_path: /decibels/login
 
     access_control:
-        - { path: ^/decibels/~, roles: IS_AUHTENTICATED_ANONYMOUSLY }
-        - { path: ^/admin/~, roles: ROLE_ADMIN }
+        - { path: ^/decibels/admin, roles: ROLE_ADMIN }

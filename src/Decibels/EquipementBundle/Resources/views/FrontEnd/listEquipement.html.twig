@@ -1,0 +1,93 @@
+{% extends '::layout.html.twig' %}
+
+{% block title %}Liste du matériel - Décibels{% endblock %}
+
+{% block body %}
+	<div class="card">
+		<div class="card-content">
+			<h3 class="text-center">Matériel empruntable</h3>
+			<table class="table table-hover">
+				<thead>
+					<tr class="row">
+						{% if app.user %}
+							{% if app.user.roles[0] == 'ROLE_ADMIN' %}
+								<th class="col-md-3 text-center">Nom</th>
+								<th class="col-md-3 text-center">Type</th>
+								<th class="col-md-2 text-center">Caution (€)</th>
+								<th class="col-md-2 text-center">Disponible</th>
+								<th class="col-md-2 text-center" colspan="2">Admin</th>
+							{% else %}
+								<th class="col-md-3 text-center">Nom</th>
+								<th class="col-md-3 text-center">Type</th>
+								<th class="col-md-3 text-center">Caution (€)</th>
+								<th class="col-md-3 text-center">Disponible</th>
+							{% endif %}
+						{% else %}
+							<th class="col-md-3 text-right">Nom</th>
+							<th class="col-md-3 text-right">Type</th>
+							<th class="col-md-3 text-right">Caution (€)</th>
+							<th class="col-md-3 text-right">Disponible</th>
+						{% endif %}
+					</tr>
+				</thead>
+				<tbody>
+				{% for equipement in equipements %}
+					<tr class="row" data-id="{{ equipement.id }}">
+						{% if app.user %}
+							{% if app.user.roles[0] == 'ROLE_ADMIN' %}
+								<td class="col-md-3">{{ equipement.nom }}</td>
+								<td class="col-md-3 text-right">{{ equipement.type }}</td>
+								<td class="col-md-2 text-right">{{ equipement.prix }}</td>
+								<td class="col-md-2 text-right">{{ equipement.maxNum }}</td>
+								<td class="col-md-1 text-center"><a style="color: #591820;" href="{{ path('decibels_equipement_edit', {'id': equipement.id }) }}"><span class="glyphicon glyphicon-edit"></span></a></td>
+								<td class="col-md-1 text-center"><a style="color: #591820;" href="{{ path('decibels_equipement_delete', {'id': equipement.id }) }}"><span class="glyphicon glyphicon-remove"></span></a></td>
+							{% else %}
+								<td class="col-md-3">{{ equipement.nom }}</td>
+								<td class="col-md-3">{{ equipement.type }}</td>
+								<td class="col-md-3 text-right">{{ equipement.prix }}</td>
+								<td class="col-md-3 text-right">{{ equipement.maxNum }}</td>
+							{% endif %}
+						{% else %}
+							<td class="col-md-3">{{ equipement.nom }}</td>
+							<td class="col-md-3">{{ equipement.type }}</td>
+							<td class="col-md-3 text-right">{{ equipement.prix }}</td>
+							<td class="col-md-3 text-right">{{ equipement.maxNum }}</td>
+						{% endif %}
+					</tr>
+				{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+{% endblock %}
+
+{% block javascript %}
+	<script>
+		var overlayFunc = function (elem) {
+			var $row = $(elem).parent();
+			var id = $row.data("id");
+			console.log(id)
+			
+			$.ajax({
+				url: '{{ path("decibels_equipement_showSpecifics") }}',
+				type: 'POST',
+				data : { id: id },
+				success : function (data) {
+					$("#overlayBox > .card > .card-content > .card-button").removeClass("hidden");
+					$("#overlaySpinner").addClass("hidden");
+					var HTMLContent = "<h3 class='text-center'>"+data.nom+"</h3>"+data.description;
+					$("#overlayContent").html(HTMLContent) 
+				},
+				xhr: function () {
+					var xhr = new window.XMLHttpRequest();
+					xhr.addEventListener("progress", function (e) {
+						$("#overlaySpinner").removeClass("hidden");
+					});
+					return xhr;
+				}
+			})
+		}
+		
+		overlayToggle("td", overlayFunc);
+	</script>
+{% endblock %}

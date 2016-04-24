@@ -18,11 +18,12 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Decibels\NewsBundle\DecibelsNewsBundle(),
-            new Decibels\MembreBundle\DecibelsMembreBundle(),
-            new Decibels\MaterielBundle\DecibelsMaterielBundle(),
-            new Decibels\GeneralBundle\DecibelsGeneralBundle(),
+            new Decibels\UserBundle\DecibelsUserBundle(),
+            new Decibels\EquipementBundle\DecibelsEquipementBundle(),
+            new Decibels\CommonBundle\DecibelsCommonBundle(),
             new Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle(),
-            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle()
+            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
+            new Decibels\RealisationBundle\DecibelsRealisationBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

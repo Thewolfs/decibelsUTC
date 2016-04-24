@@ -1,0 +1,33 @@
+{% extends '::layout.html.twig' %}
+
+{% block title %}Admin - Décibels{% endblock %}
+
+{% block body %}
+	<h2 class="text-center">Administration</h2>
+	<div class="row" style="padding: 5px;">
+		<ul class="col-md-6" style="height: 200px;">
+			<li class="text-center" style="list-style: none;"><h3>Général</h3></li>
+				<li><a href="{{ path('decibels_presentation_edit') }}">Modifier la présentation</a></li>
+				<li><a href="{{ path('decibels_realisation_add') }}">Ajouter une réalisation</a></li>
+				<li><a href="{{ path('decibels_realisation_listAdmin') }}">Modifier / Supprimer une réalisation</a></li>
+		</ul>
+		<ul class="col-md-6" style="height: 200px;">
+			<li class="text-center" style="list-style: none;"><h3>News</h3></li>
+			<li><a href="{{ path('decibels_news_new') }}">Ajouter une news</a></li>
+			<li><a href="{{ path('decibels_news_listAdmin') }}">Modifier / Supprimer une news</a></li>
+		</ul>
+	</div>
+	<div class="row" style="padding: 5px;">	
+		<ul class="col-md-6" style="height: 200px;">
+			<li class="text-center" style="list-style: none;"><h3>Matériel</h3></li>
+			<li><a href="{{ path('decibels_equipement_list') }}">Liste du matériel</a></li>
+			<li><a href="{{ path('decibels_equipement_add') }}">Ajouter du matériel</a></li>
+			<li><a href="{{ path('decibels_equipement_list') }}">Modifier / Supprimer une fiche matériel</a></li>
+		</ul>
+		<ul class="col-md-6" style="height: 200px;">
+			<li class="text-center" style="list-style: none;"><h3>Carrousel</h3></li>
+			<li><a href="{{ path('decibels_carrousel_addImage') }}">Ajouter une image</a></li>
+			<li><a href="{{ path('decibels_carrousel_changeImage') }}">Modifier les images</a></li>
+		</ul>
+	</div>
+{% endblock %}

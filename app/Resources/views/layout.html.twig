@@ -74,10 +74,10 @@
 			{% else %}
 				<li><a href="{{ path('decibels_presentation') }}"><span class="fa fa-users"></span>L'association</a></li>
 			{% endif %}
-			{% if app.request.get('_route') == 'decibels_materiel_list' %}
-				<li><a class="active" href="{{ path('decibels_materiel_list') }}"><span class="fa fa-microphone"></span>Matériel</a></li>
+			{% if app.request.get('_route') == 'decibels_equipement_list' %}
+				<li><a class="active" href="{{ path('decibels_equipement_list') }}"><span class="fa fa-microphone"></span>Matériel</a></li>
 			{% else %}
-				<li><a href="{{ path('decibels_materiel_list') }}"><span class="fa fa-microphone"></span>Matériel</a></li>
+				<li><a href="{{ path('decibels_equipement_list') }}"><span class="fa fa-microphone"></span>Matériel</a></li>
 			{% endif %}
 		</ul>
 	</nav>

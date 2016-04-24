@@ -57,7 +57,7 @@ class News
     /**
      * @var picture
      *
-	 * @ORM\OneToOne(targetEntity="Decibels\GeneralBundle\Entity\File")
+	 * @ORM\OneToOne(targetEntity="Decibels\CommonBundle\Entity\File")
 	 */
     private $picture;
 	
@@ -206,10 +206,10 @@ class News
     /**
      * Set picture
      *
-     * @param \Decibels\GeneralBundle\Entity\File $picture
+     * @param \Decibels\CommonBundle\Entity\File $picture
      * @return News
      */
-    public function setPicture(\Decibels\GeneralBundle\Entity\File $picture = null)
+    public function setPicture(\Decibels\CommonBundle\Entity\File $picture = null)
     {
         $this->picture = $picture;
 
@@ -219,7 +219,7 @@ class News
     /**
      * Get picture
      *
-     * @return \Decibels\GeneralBundle\Entity\File 
+     * @return \Decibels\CommonBundle\Entity\File 
      */
     public function getPicture()
     {

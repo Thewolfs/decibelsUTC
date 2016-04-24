@@ -1,0 +1,35 @@
+decibels_equipement_list:
+    path:     /decibels/equipement/
+    defaults: { _controller: DecibelsEquipementBundle:FrontEnd:listEquipement }
+    methods: [GET]
+
+decibels_equipement_showOne:
+    path:     /decibels/equipement/{id}
+    defaults: { _controller: DecibelsEquipementBundle:FrontEnd:showOneEquipement }
+    requirements:
+        id: \d+
+    methods: [GET]
+
+decibels_equipement_showSpecifics:
+    path:     /decibels/equipement/showSpecifics
+    defaults: { _controller: DecibelsEquipementBundle:FrontEnd:showSpecifics }
+    methods: [POST]
+
+decibels_equipement_add:
+    path:     /decibels/admin/equipement/add
+    defaults: { _controller: DecibelsEquipementBundle:BackEnd:addEquipement }
+    methods: [GET|POST]
+
+decibels_equipement_edit:
+    path:     /decibels/admin/equipement/edit/{id}
+    defaults: { _controller: DecibelsEquipementBundle:BackEnd:editEquipement }
+    requirements:
+        id: \d+
+    methods: [GET|POST]
+
+decibels_equipement_delete:
+    path:     /decibels/admin/equipement/delete/{id}
+    defaults: { _controller: DecibelsEquipementBundle:BackEnd:deleteEquipement }
+    requirements:
+        id: \d+
+    methods: [GET|POST]

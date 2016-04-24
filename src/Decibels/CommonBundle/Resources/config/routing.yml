@@ -1,0 +1,46 @@
+decibels_presentation:
+    path:     /decibels/presentation
+    defaults: { _controller: DecibelsCommonBundle:FrontEnd:presentation }
+    methods: [GET]
+    
+decibels_presentation_edit:
+    path:     /decibels/presentation/edit
+    defaults: { _controller: DecibelsCommonBundle:BackEnd:editPresentation }
+    methods: [GET|POST]
+
+decibels_contact:
+    path:     /decibels/contact
+    defaults: { _controller: DecibelsCommonBundle:FrontEnd:contact }
+    methods: [GET|POST]
+
+decibels_admin_index:
+    path:     /decibels/admin
+    defaults: { _controller:DecibelsCommonBundle:BackEnd:admin }
+    methods: [GET]
+
+decibels_realisation_listAdmin:
+    path:     /decibels/realisation/admin/list
+    defaults: { _controller:DecibelsCommonBundle:BackEnd:listAdmin }
+    methods: [GET]
+
+decibels_file_uploadFile:
+    path:     /decibels/file/upload
+    defaults: { _controller:DecibelsCommonBundle:BackEnd:uploadFile }
+    methods: [POST]
+    
+decibels_carrousel_addImage:
+    path:     /decibels/carrousel/addImage
+    defaults: { _controller:DecibelsCommonBundle:BackEnd:addImage }
+    methods: [GET|POST]
+
+decibels_carrousel_changeImage:
+    path:     /decibels/carrousel/changeImage
+    defaults: { _controller:DecibelsCommonBundle:BackEnd:changeImage }
+    methods: [GET|POST]
+
+decibels_carrousel_deleteImage:
+    path:     /decibels/carrousel/deleteImage/{id}
+    defaults: { _controller:DecibelsCommonBundle:BackEnd:deleteImage }
+    requirements:
+        id: \d+
+    methods: [GET|POST]

@@ -1,0 +1,12 @@
+{% extends '::layout.html.twig' %}
+
+{% block title %}Détail de {{ equipement.nom }} - Décibels{% endblock %}
+
+
+{% block body %}
+	{{ equipement.nom }}<br />
+	Type : {{ equipement.type }}<br />
+	Description : {{ equipement.description }}<br />
+	Prix : {{ equipement.prix }}<br />
+	Quantité maximum : {{ equipement.maxNum }}
+{% endblock %}

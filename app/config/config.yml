@@ -41,7 +41,7 @@ twig:
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        [ DecibelsMaterielBundle ]
+    bundles:        [ DecibelsEquipementBundle ]
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -78,7 +78,7 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
 
-decibels_membre:
+decibels_user:
     check_path: /decibels/admin/logincheck
     login_path: /decibels/login
     

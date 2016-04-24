@@ -1,8 +1,29 @@
-decibels_news_news:
-    resource: "@DecibelsNewsBundle/Resources/config/news.yml"
-    prefix:   /decibels/news
-
 decibels_homepage:
     path:     /decibels/
-    defaults: { _controller: DecibelsNewsBundle:News:index }
+    defaults: { _controller: DecibelsNewsBundle:FrontEnd:index }
     methods: [GET]
+
+decibels_news_show:
+    path:     /decibels/news/show/{id}
+    defaults: { _controller: "DecibelsNewsBundle:FrontEnd:show" }
+    methods: [GET]
+
+decibels_news_listAdmin:
+    path:     /decibels/admin/list
+    defaults: { _controller: "DecibelsNewsBundle:BackEnd:listAdmin" }
+    methods: [GET]
+
+decibels_news_new:
+    path:     /decibels/admin/news/new
+    defaults: { _controller: "DecibelsNewsBundle:BackEnd:new" }
+    methods: [GET|POST]
+
+decibels_news_edit:
+    path:     /decibels/admin/news/edit/{id}
+    defaults: { _controller: "DecibelsNewsBundle:BackEnd:edit" }
+    methods: [GET|POST]
+
+decibels_news_delete:
+    path:     /decibels/admin/news/delete/{id}
+    defaults: { _controller: "DecibelsNewsBundle:BackEnd:delete" }
+    methods: [GET|POST]
