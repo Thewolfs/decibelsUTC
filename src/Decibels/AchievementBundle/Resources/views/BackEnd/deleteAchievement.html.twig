@@ -4,8 +4,8 @@
 
 {% block body %}
 
-	<p>Êtes-vous sur de vouloir supprimer la réalisation {{ realisation.nom }} ?</p>
-	<form action="{{ path('decibels_realisation_delete', {'id' : réalisation.id }) }}" method="POST">
+	<p>Êtes-vous sur de vouloir supprimer la réalisation {{ achievement.nom }} ?</p>
+	<form action="{{ path('decibels_achievement_delete', {'id' : achievement.id }) }}" method="POST">
 		<input type="submit" value="Supprimer" />
 		{{ form_rest(form) }}
 	</form>

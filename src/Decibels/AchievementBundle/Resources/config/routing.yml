@@ -1,27 +1,27 @@
-decibels_realisation_list:
-    path:     /decibels/realisation
+decibels_achievement_list:
+    path:     /decibels/achievement
     defaults: { _controller: DecibelsAchievementBundle:FrontEnd:listAchievement }
     methods: [GET]
 
-decibels_realisation_listAdmin:
-    path:     /decibels/admin/realisation/list
+decibels_achievement_listAdmin:
+    path:     /decibels/admin/achievement/list
     defaults: { _controller:DecibelsAchievementBundle:BackEnd:listAdmin }
     methods: [GET]
 
-decibels_realisation_add:
-    path:     /decibels/admin/realisation/add
+decibels_achievement_add:
+    path:     /decibels/admin/achievement/add
     defaults: { _controller: DecibelsAchievementBundle:BackEnd:addAchievement }
     methods: [GET|POST]
 
-decibels_realisation_edit:
-    path:     /decibels/admin/realisation/edit/{id}
+decibels_achievement_edit:
+    path:     /decibels/admin/achievement/edit/{id}
     defaults: { _controller: DecibelsAchievementBundle:BackEnd:editAchievement }
     requirements:
         id: \d+
     methods: [GET|POST]
         
-decibels_realisation_delete:
-    path:     /decibels/admin/realisation/delete/{id}
+decibels_achievement_delete:
+    path:     /decibels/admin/achievement/delete/{id}
     defaults: { _controller: DecibelsAchievementBundle:BackEnd:deleteAchievement }
     requirements:
         id: \d+

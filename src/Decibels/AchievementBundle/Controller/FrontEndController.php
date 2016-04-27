@@ -13,8 +13,8 @@ class FrontEndController extends Controller
     public function listAchievementAction(Request $request) {
 		$em = $this->getDoctrine()->getManager();
 		
-		$listRea = $em->getRepository('DecibelsAchievementBundle:Achievement')->findAllSortByIdDesc();
+		$listAchievement = $em->getRepository('DecibelsAchievementBundle:Achievement')->findAllSortByIdDesc();
 		
-        return $this->render('DecibelsAchievementBundle:FrontEnd:listAchievement.html.twig', array('listRea' => $listRea));
+        return $this->render('DecibelsAchievementBundle:FrontEnd:listAchievement.html.twig', array('listAchievement' => $listAchievement));
     }
 }

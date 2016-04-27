@@ -64,10 +64,10 @@
 			{% else %}
 				<li><a href="{{ path('decibels_homepage') }}"><span class="fa fa-newspaper-o"></span>News</a></li>
 			{% endif %}
-			{% if app.request.get('_route') == 'decibels_realisation_list' %}
-				<li><a class="active" href="{{ path('decibels_realisation_list') }}"><span class="fa fa-music"></span>Réalisations</a></li>	
+			{% if app.request.get('_route') == 'decibels_achievement_list' %}
+				<li><a class="active" href="{{ path('decibels_achievement_list') }}"><span class="fa fa-music"></span>Réalisations</a></li>	
 			{% else %}
-				<li><a href="{{ path('decibels_realisation_list') }}"><span class="fa fa-music"></span>Réalisations</a></li>	
+				<li><a href="{{ path('decibels_achievement_list') }}"><span class="fa fa-music"></span>Réalisations</a></li>	
 			{% endif %}
 			{% if app.request.get('_route') == 'decibels_presentation' %}
 				<li><a class="active" href="{{ path('decibels_presentation') }}"><span class="fa fa-users"></span>L'association</a></li>

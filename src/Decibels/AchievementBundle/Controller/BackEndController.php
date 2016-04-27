@@ -9,21 +9,28 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\Request;
 
 class BackEndController extends Controller
-{  
-    public function addAchievementAction(Request $request) {		
-		$realisation = new Achievement();
+{
+	public function listAdminAction(Request $request)
+	{
+		$listAchievement = $this->getDoctrine()->getManager()->getRepository('DecibelsAchievementBundle:Achievement')->findAll();
 		
-		$form = $this->get('form.factory')->create(new AchievementType(), $realisation);
+		return $this->render('DecibelsAchievementBundle:BackEnd:listAdmin.html.twig', array('listAchievement' => $listAchievement));
+	}
+	  
+    public function addAchievementAction(Request $request) {		
+		$achievement = new Achievement();
+		
+		$form = $this->get('form.factory')->create(new AchievementType(), $achievement);
 		
 		if($form->handleRequest($request)->isValid())
 		{
 			$em = $this->getDoctrine()->getManager();
-			$em->persist($realisation);
+			$em->persist($achievement);
 			$em->flush();
 			
 			$request->getSession()->getFlashBag()->add('notice', 'Réalisation bien ajoutée.');
 			 
-			return $this->redirect($this->generateUrl('decibels_realisation_list'));
+			return $this->redirect($this->generateUrl('decibels_achievement_list'));
 		}
 		
 		return $this->render('DecibelsAchievementBundle:BackEnd:addAchievement.html.twig', array('form' => $form->createView()));
@@ -31,17 +38,17 @@ class BackEndController extends Controller
 	
 	public function editAchievementAction(Request $request, $id) {		
 		$em = $this->getDoctrine()->getManager();
-		$realisation = $em->getRepository('DecibelsAchievementBundle:Achievement')->find($id);
-		$form = $this->get('form.factory')->create(new AchievementType(), $realisation);
+		$achievement = $em->getRepository('DecibelsAchievementBundle:Achievement')->find($id);
+		$form = $this->get('form.factory')->create(new AchievementType(), $achievement);
 		
 		if($form->handleRequest($request)->isValid())
 		{
-			$em->persist($realisation);
+			$em->persist($achievement);
 			$em->flush();
 			
 			$request->getSession()->getFlashBag()->add('notice', 'Réalisation bien modifiée.');
 			 
-			return $this->redirect($this->generateUrl('decibels_realisation_list'));
+			return $this->redirect($this->generateUrl('decibels_achievement_list'));
 		}
 		
 		return $this->render('DecibelsAchievementBundle:BackEnd:editAchievement.html.twig', array('form' => $form->createView()));
@@ -50,9 +57,9 @@ class BackEndController extends Controller
 	public function deleteAchievementAction(Request $request, $id) {		
 		$em = $this->getDoctrine()->getManager();
 		
-		$realisation = $em->getRepository('DecibelsAchievementBundle:Achievement')->find($id);
+		$achievement = $em->getRepository('DecibelsAchievementBundle:Achievement')->find($id);
 		
-		if(null === $realisation)
+		if(null === $achievement)
 		{
 			throw new NotFoundHttpException("La réalisation spécifiée n'existe pas");
 		}
@@ -61,14 +68,14 @@ class BackEndController extends Controller
 		
 		if($form->handleRequest($request)->isValid())
 		{
-			$em->remove($realisation);
+			$em->remove($achievement);
 			$em->flush();
 			
 			$request->getSession()->getFlashBag()->add('notice', 'La réalisation spécifié a bien été supprimée');
 			
-			return $this->redirect($this->generateUrl('decibels_réalisation'));
+			return $this->redirect($this->generateUrl('decibels_achievement_list'));
 		}
 		
-		return $this->render('DecibelsAchievementBundle:BackEnd:deleteAchievement.html.twig', array('form' => $form->createView()));
+		return $this->render('DecibelsAchievementBundle:BackEnd:deleteAchievement.html.twig', array('form' => $form->createView(), 'achievement' => $achievement));
 	}
 }
