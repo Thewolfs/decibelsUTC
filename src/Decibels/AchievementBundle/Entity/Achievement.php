@@ -1,16 +1,16 @@
 <?php
 
-namespace Decibels\RealisationBundle\Entity;
+namespace Decibels\AchievementBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Realisation
+ * Achievement
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Decibels\RealisationBundle\Entity\RealisationRepository")
+ * @ORM\Entity(repositoryClass="Decibels\AchievementBundle\Entity\AchievementRepository")
  */
-class Realisation
+class Achievement
 {
     /**
      * @var integer
@@ -64,7 +64,7 @@ class Realisation
      * Set nom
      *
      * @param string $nom
-     * @return Realisation
+     * @return Achievement
      */
     public function setNom($nom)
     {
@@ -87,7 +87,7 @@ class Realisation
      * Set description
      *
      * @param string $description
-     * @return Realisation
+     * @return Achievement
      */
     public function setDescription($description)
     {
@@ -110,7 +110,7 @@ class Realisation
      * Set url
      *
      * @param string $url
-     * @return Realisation
+     * @return Achievement
      */
     public function setUrl($url)
     {
@@ -133,7 +133,7 @@ class Realisation
      * Set event
      *
      * @param boolean $event
-     * @return Realisation
+     * @return Achievement
      */
     public function setEvent($event)
     {

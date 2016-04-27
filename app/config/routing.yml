@@ -1,5 +1,5 @@
 decibels_realisation:
-    resource: "@DecibelsRealisationBundle/Resources/config/routing.yml"
+    resource: "@DecibelsAchievementBundle/Resources/config/routing.yml"
     prefix:   /
 
 decibels_common:

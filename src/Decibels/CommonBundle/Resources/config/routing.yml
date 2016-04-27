@@ -4,7 +4,7 @@ decibels_presentation:
     methods: [GET]
     
 decibels_presentation_edit:
-    path:     /decibels/presentation/edit
+    path:     /decibels/admin/presentation/edit
     defaults: { _controller: DecibelsCommonBundle:BackEnd:editPresentation }
     methods: [GET|POST]
 
@@ -18,28 +18,23 @@ decibels_admin_index:
     defaults: { _controller:DecibelsCommonBundle:BackEnd:admin }
     methods: [GET]
 
-decibels_realisation_listAdmin:
-    path:     /decibels/realisation/admin/list
-    defaults: { _controller:DecibelsCommonBundle:BackEnd:listAdmin }
-    methods: [GET]
-
 decibels_file_uploadFile:
-    path:     /decibels/file/upload
+    path:     /decibels/admin/file/upload
     defaults: { _controller:DecibelsCommonBundle:BackEnd:uploadFile }
     methods: [POST]
     
 decibels_carrousel_addImage:
-    path:     /decibels/carrousel/addImage
+    path:     /decibels/admin/carrousel/addImage
     defaults: { _controller:DecibelsCommonBundle:BackEnd:addImage }
     methods: [GET|POST]
 
 decibels_carrousel_changeImage:
-    path:     /decibels/carrousel/changeImage
+    path:     /decibels/admin/carrousel/changeImage
     defaults: { _controller:DecibelsCommonBundle:BackEnd:changeImage }
     methods: [GET|POST]
 
 decibels_carrousel_deleteImage:
-    path:     /decibels/carrousel/deleteImage/{id}
+    path:     /decibels/admin/carrousel/deleteImage/{id}
     defaults: { _controller:DecibelsCommonBundle:BackEnd:deleteImage }
     requirements:
         id: \d+

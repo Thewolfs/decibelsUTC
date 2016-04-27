@@ -1,19 +1,19 @@
 <?php
 
-namespace Decibels\RealisationBundle\Controller;
+namespace Decibels\AchievementBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Decibels\RealisationBundle\Entity\Realisation;
-use Decibels\RealisationBundle\Form\RealisationType;
+use Decibels\AchievementBundle\Entity\Achievement;
+use Decibels\AchievementBundle\Form\AchievementType;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\Request;
 
 class BackEndController extends Controller
 {  
-    public function addRealisationAction(Request $request) {		
-		$realisation = new Realisation();
+    public function addAchievementAction(Request $request) {		
+		$realisation = new Achievement();
 		
-		$form = $this->get('form.factory')->create(new RealisationType(), $realisation);
+		$form = $this->get('form.factory')->create(new AchievementType(), $realisation);
 		
 		if($form->handleRequest($request)->isValid())
 		{
@@ -26,13 +26,13 @@ class BackEndController extends Controller
 			return $this->redirect($this->generateUrl('decibels_realisation_list'));
 		}
 		
-		return $this->render('DecibelsRealisationBundle:BackEnd:addRealisation.html.twig', array('form' => $form->createView()));
+		return $this->render('DecibelsAchievementBundle:BackEnd:addAchievement.html.twig', array('form' => $form->createView()));
 	}
 	
-	public function editRealisationAction(Request $request, $id) {		
+	public function editAchievementAction(Request $request, $id) {		
 		$em = $this->getDoctrine()->getManager();
-		$realisation = $em->getRepository('DecibelsRealisationBundle:Realisation')->find($id);
-		$form = $this->get('form.factory')->create(new RealisationType(), $realisation);
+		$realisation = $em->getRepository('DecibelsAchievementBundle:Achievement')->find($id);
+		$form = $this->get('form.factory')->create(new AchievementType(), $realisation);
 		
 		if($form->handleRequest($request)->isValid())
 		{
@@ -44,13 +44,13 @@ class BackEndController extends Controller
 			return $this->redirect($this->generateUrl('decibels_realisation_list'));
 		}
 		
-		return $this->render('DecibelsRealisationBundle:BackEnd:editRealisation.html.twig', array('form' => $form->createView()));
+		return $this->render('DecibelsAchievementBundle:BackEnd:editAchievement.html.twig', array('form' => $form->createView()));
 	}
 	
-	public function deleteRealisationAction(Request $request, $id) {		
+	public function deleteAchievementAction(Request $request, $id) {		
 		$em = $this->getDoctrine()->getManager();
 		
-		$realisation = $em->getRepository('DecibelsRealisationBundle:Realisation')->find($id);
+		$realisation = $em->getRepository('DecibelsAchievementBundle:Achievement')->find($id);
 		
 		if(null === $realisation)
 		{
@@ -69,6 +69,6 @@ class BackEndController extends Controller
 			return $this->redirect($this->generateUrl('decibels_réalisation'));
 		}
 		
-		return $this->render('DecibelsRealisationBundle:BackEnd:deleteRealisation.html.twig', array('form' => $form->createView()));
+		return $this->render('DecibelsAchievementBundle:BackEnd:deleteAchievement.html.twig', array('form' => $form->createView()));
 	}
 }

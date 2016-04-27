@@ -1,12 +1,12 @@
 <?php
 
-namespace Decibels\RealisationBundle\Form;
+namespace Decibels\AchievementBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class RealisationType extends AbstractType
+class AchievementType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -29,7 +29,7 @@ class RealisationType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Decibels\RealisationBundle\Entity\Realisation'
+            'data_class' => 'Decibels\AchievementBundle\Entity\Achievement'
         ));
     }
 
