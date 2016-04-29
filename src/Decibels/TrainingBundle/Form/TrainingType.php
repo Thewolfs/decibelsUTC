@@ -1,12 +1,12 @@
 <?php
 
-namespace Decibels\FormationBundle\Form;
+namespace Decibels\TrainingBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class FormationType extends AbstractType
+class TrainingType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -44,7 +44,7 @@ class FormationType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Decibels\FormationBundle\Entity\Formation'
+            'data_class' => 'Decibels\TrainingBundle\Entity\Training'
         ));
     }
 

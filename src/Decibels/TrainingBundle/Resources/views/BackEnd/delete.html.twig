@@ -8,7 +8,7 @@
             <div class="card-content">
 				<h4>Supprimer une formation</h4>
                     <p>Êtes-vous sur de vouloir supprimer cette image ?</p>
-                    <form action="{{ path('decibels_formation_delete', {'id' : formation.id }) }}" method="POST">
+                    <form action="{{ path('decibels_training_delete', {'id' : training.id }) }}" method="POST">
                         <input type="submit" value="Supprimer" />
                         {{ form_rest(form) }}
                     </form>

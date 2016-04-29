@@ -1,0 +1,23 @@
+decibels_training_list:
+    path:     /decibels/training
+    defaults: { _controller: DecibelsTrainingBundle:FrontEnd:list }
+    methods: [GET]
+
+decibels_training_add:
+    path:     /decibels/admin/training/ajouter
+    defaults: { _controller: DecibelsTrainingBundle:BackEnd:add }
+    methods: [GET|POST]
+
+decibels_training_edit:
+    path:     /decibels/admin/training/modifier/{id}
+    defaults: { _controller: DecibelsTrainingBundle:BackEnd:edit }
+    methods: [GET|POST]
+    requirements: 
+        id: \d+
+
+decibels_training_delete:
+    path:     /decibels/admin/training/supprimer/{id}
+    defaults: { _controller: DecibelsTrainingBundle:BackEnd:delete }
+    methods: [GET|POST]
+    requirements: 
+        id: \d+

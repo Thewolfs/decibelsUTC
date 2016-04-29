@@ -1,16 +1,16 @@
 <?php
 
-namespace Decibels\FormationBundle\Entity;
+namespace Decibels\TrainingBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Formation
+ * Training
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Decibels\FormationBundle\Entity\FormationRepository")
+ * @ORM\Entity(repositoryClass="Decibels\TrainingBundle\Entity\TrainingRepository")
  */
-class Formation
+class Training
 {
     /**
      * @var integer
@@ -50,7 +50,7 @@ class Formation
     private $date;
 
 	/**
-     * @ORM\OneToOne(targetEntity="Decibels\GeneralBundle\Entity\File")
+     * @ORM\OneToOne(targetEntity="Decibels\CommonBundle\Entity\File")
      * @ORM\JoinColumn(name="file_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $file;
@@ -69,7 +69,7 @@ class Formation
      * Set titre
      *
      * @param string $titre
-     * @return Formation
+     * @return Training
      */
     public function setTitre($titre)
     {
@@ -92,7 +92,7 @@ class Formation
      * Set type
      *
      * @param integer $type
-     * @return Formation
+     * @return Training
      */
     public function setType($type)
     {
@@ -115,7 +115,7 @@ class Formation
      * Set date
      *
      * @param \DateTime $date
-     * @return Formation
+     * @return Training
      */
     public function setDate($date)
     {
@@ -138,7 +138,7 @@ class Formation
      * Set description
      *
      * @param string $description
-     * @return Formation
+     * @return Training
      */
     public function setDescription($description)
     {
@@ -160,10 +160,10 @@ class Formation
     /**
      * Set file
      *
-     * @param \Decibels\GeneralBundle\Entity\File $file
-     * @return Formation
+     * @param \Decibels\CommonBundle\Entity\File $file
+     * @return Training
      */
-    public function setFile(\Decibels\GeneralBundle\Entity\File $file = null)
+    public function setFile(\Decibels\CommonBundle\Entity\File $file = null)
     {
         $this->file = $file;
 
@@ -173,7 +173,7 @@ class Formation
     /**
      * Get file
      *
-     * @return \Decibels\GeneralBundle\Entity\File 
+     * @return \Decibels\CommonBundle\Entity\File 
      */
     public function getFile()
     {

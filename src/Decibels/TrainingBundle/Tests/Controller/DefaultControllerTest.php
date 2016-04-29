@@ -1,6 +1,6 @@
 <?php
 
-namespace Decibels\FormationBundle\Tests\Controller;
+namespace Decibels\TrainingBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
