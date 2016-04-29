@@ -268,10 +268,12 @@
 					$(".menu-button").click(function(e) {
 						e.stopPropagation();
 						$(".primary-nav").fadeIn();
-						$("html").click(function () {
-							$(".primary-nav").fadeOut();
-							$("html").unbind('click');
-						})
+						if($("html").width() <= 1100) {
+							$("html").click(function () {
+								$(".primary-nav").fadeOut();
+								$("html").unbind('click');
+							})
+						}
 					})
 				</script>
 				{% block javascript %}{% endblock %}
