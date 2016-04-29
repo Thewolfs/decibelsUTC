@@ -4,19 +4,19 @@ decibels_training_list:
     methods: [GET]
 
 decibels_training_add:
-    path:     /decibels/admin/training/ajouter
+    path:     /decibels/admin/training/add
     defaults: { _controller: DecibelsTrainingBundle:BackEnd:add }
     methods: [GET|POST]
 
 decibels_training_edit:
-    path:     /decibels/admin/training/modifier/{id}
+    path:     /decibels/admin/training/edit/{id}
     defaults: { _controller: DecibelsTrainingBundle:BackEnd:edit }
     methods: [GET|POST]
     requirements: 
         id: \d+
 
 decibels_training_delete:
-    path:     /decibels/admin/training/supprimer/{id}
+    path:     /decibels/admin/training/delete/{id}
     defaults: { _controller: DecibelsTrainingBundle:BackEnd:delete }
     methods: [GET|POST]
     requirements: 

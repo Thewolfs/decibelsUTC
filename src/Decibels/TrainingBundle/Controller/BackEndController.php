@@ -11,13 +11,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class BackEndController extends Controller
 {
-    public function addAction(Request $request)
-    {
-		if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ADMIN'))
-		{
-			throw new AccessDeniedException();
-		}
-		
+    public function addAction(Request $request) {
 		$training = new Training();
 		
 		$form = $this->get('form.factory')->create(new TrainingType(), $training);
@@ -25,14 +19,14 @@ class BackEndController extends Controller
 		if($form->handleRequest($request)->isValid())
 		{
 			$em = $this->getDoctrine()->getManager();
-			$file = $em->getRepository('DecibelsGeneralBundle:File')->find($request->request->get('file_id'));
+			$file = $em->getRepository('DecibelsCommonBundle:File')->find($request->request->get('file_id'));
 			$training->setFile($file);
 			$date = new \DateTime();
 			$training->setDate($date);
 			$em->persist($training);
 			$em->flush();
 			
-			$request->getSession()->getFlashBag()->add('notice', 'Training bien ajoutée.');
+			$request->getSession()->getFlashBag()->add('notice', 'Formation bien ajoutée.');
 			 
 			return $this->redirect($this->generateUrl('decibels_training_list'));
 		}
@@ -40,20 +34,14 @@ class BackEndController extends Controller
         return $this->render('DecibelsTrainingBundle:BackEnd:add.html.twig', array("form" => $form->createView()));
     }
 	
-	public function editAction($id, Request $request)
-	{
-		if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ADMIN'))
-		{
-			throw new AccessDeniedException();
-		}
-		
+	public function editAction($id, Request $request) {		
 		$em = $this->getDoctrine()->getManager();
 		
 		$training = $em->getRepository('DecibelsTrainingBundle:Training')->find($id);
 		
 		if(null === $training)
 		{
-			throw new NotFoundHttpException("La training spécifié n'existe pas");
+			throw new NotFoundHttpException("La formation spécifié n'existe pas");
 		}
 		
 		$form = $this->get('form.factory')->create(new TrainingType, $training);
@@ -62,12 +50,12 @@ class BackEndController extends Controller
 		{
 			if($request->request->get('file_id')) 
 			{
-				$file = $em->getRepository('DecibelsGeneralBundle:File')->find($request->request->get('file_id'));
+				$file = $em->getRepository('DecibelsCommonBundle:File')->find($request->request->get('file_id'));
 				$training->setFile($file);
 			}
 			$em->flush();
 			
-			$request->getSession()->getFlashBag()->add('notice', 'Training bien modifiée.');
+			$request->getSession()->getFlashBag()->add('notice', 'Formation bien modifiée.');
 			 
 			return $this->redirect($this->generateUrl('decibels_training_list'));
 		}
@@ -77,20 +65,14 @@ class BackEndController extends Controller
 		));
 	}
 	
-	public function deleteAction($id, Request $request)
-	{
-		if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ADMIN'))
-		{
-			throw new AccessDeniedException();
-		}
-		
+	public function deleteAction($id, Request $request) {
 		$em = $this->getDoctrine()->getManager();
 		
 		$training = $em->getRepository('DecibelsTrainingBundle:Training')->find($id);
 		
 		if(null === $training)
 		{
-			throw new NotFoundHttpException("La training spécifié n'existe pas");
+			throw new NotFoundHttpException("La formation spécifié n'existe pas");
 		}
 		
 		$form = $this->createFormBuilder()->getForm();
@@ -100,7 +82,7 @@ class BackEndController extends Controller
 			$em->remove($training);
 			$em->flush();
 			
-			$request->getSession()->getFlashBag()->add('notice', 'Training bien supprimée.');
+			$request->getSession()->getFlashBag()->add('notice', 'Formation bien supprimée.');
 			 
 			return $this->redirect($this->generateUrl('decibels_training_list'));
 		}
