@@ -1,0 +1,37 @@
+.nav > li > ul.drop-child {
+    display: none;
+    background-color: #430506;
+    color: #e9e508;
+    position: absolute;
+    float: left;
+    z-index: 1000;
+    width: 200px;
+}
+
+.nav > li > ul.drop-child {
+    padding: 0;
+}
+
+.nav > li > ul.drop-child > li > a {
+    color: #e9e508;
+    padding: 10px;
+    display: block;
+}
+
+.nav > li > ul.drop-child > li > a:hover {
+    color: #e9e508;
+    text-decoration: none;
+    background: #8F191B;
+}
+
+.drop-child  > li {
+    list-style: none;
+}
+
+.navbar-inverse .navbar-nav > li.drop-title > a:focus {
+    background: transparent;
+}
+
+.drop-title {
+    position: relative;
+}
