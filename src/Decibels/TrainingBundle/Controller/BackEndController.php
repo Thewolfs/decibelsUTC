@@ -11,6 +11,12 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class BackEndController extends Controller
 {
+	public function listAdminAction(Request $request) {		
+		$listTraining = $this->getDoctrine()->getManager()->getRepository('DecibelsTrainingBundle:Training')->findAll();
+		
+		return $this->render('DecibelsTrainingBundle:BackEnd:listAdmin.html.twig', array('listTraining' => $listTraining));
+	}
+	
     public function addAction(Request $request) {
 		$training = new Training();
 		

@@ -2,6 +2,11 @@ decibels_training_list:
     path:     /decibels/training
     defaults: { _controller: DecibelsTrainingBundle:FrontEnd:list }
     methods: [GET]
+    
+decibels_training_listAdmin:
+    path:     /decibels/admin/training/list
+    defaults: { _controller: DecibelsTrainingBundle:BackEnd:listAdmin }
+    methods: [GET]
 
 decibels_training_add:
     path:     /decibels/admin/training/add
