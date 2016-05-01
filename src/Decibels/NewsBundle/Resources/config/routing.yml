@@ -9,7 +9,7 @@ decibels_news_show:
     methods: [GET]
 
 decibels_news_listAdmin:
-    path:     /decibels/admin/list
+    path:     /decibels/admin/news/list
     defaults: { _controller: "DecibelsNewsBundle:BackEnd:listAdmin" }
     methods: [GET]
 
