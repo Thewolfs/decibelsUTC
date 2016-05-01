@@ -1,4 +1,4 @@
-{% extends '::layout.html.twig' %}
+{% extends '::layoutAdmin.html.twig' %}
 
 {% form_theme form _self %}
 
@@ -24,9 +24,12 @@
 {% block title %}Créer une news - Décibels{% endblock %}
 
 {% block body -%}
-    <h2>Créer une news</h2>
-
-    {{ form(form) }}
+    <div class="card">
+        <div class="card-content">
+            <h4 class="text-center">Créer une news</h4>
+            {{ form(form) }}
+        </div>
+    </div>
 {% endblock %}
 
 {% block javascript %}

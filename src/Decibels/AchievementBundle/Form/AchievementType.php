@@ -15,10 +15,36 @@ class AchievementType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nom')
-            ->add('description')
-            ->add('url')
-            ->add('event')
+            ->add('nom', null, array(
+                "label" => "Nom",
+                "label_attr" => array('class' => 'hidden'), 
+                "attr" => array(
+                    "placeholder" => "Nom"
+                )
+            ))
+            ->add('description', null, array(
+                "label" => "Description",
+                "label_attr" => array('class' => 'hidden'), 
+                "attr" => array(
+                    "placeholder" => "Description",
+                    "rows" => '10'
+                )
+            ))
+            ->add('url', null, array(
+                "label" => "Lien vers la réalisation (Soundcloud si MAO)",
+                "label_attr" => array('class' => 'hidden'), 
+                "attr" => array(
+                    "placeholder" => "Lien vers la réalisation (Soundcloud si MAO)"
+                )
+            ))
+            ->add('event', 'choice', array(
+                'choices'  => array(
+					'Oui' => 1,
+					'Non' => 0
+				),
+				'choices_as_values' => true,
+                "label" => "Est-ce un évènement live ?"
+            ))
 			->add('Enregistrer', 'submit')
         ;
     }

@@ -24,7 +24,7 @@ class BackEndController extends Controller
 		$data = array('presentation' => $presentation);
 		
 		$form = $this->createFormBuilder($data)
-					 ->add('presentation', 'textarea', array('label' => 'Nouvelle présentation'))
+					 ->add('presentation', 'textarea', array('label' => 'Nouvelle présentation', "attr" => array("rows" => 10)))
 					 ->add('Modifier', 'submit')
 					 ->getForm();
 					 

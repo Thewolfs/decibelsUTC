@@ -1,4 +1,4 @@
-{% extends '::layout.html.twig' %}
+{% extends '::layoutAdmin.html.twig' %}
 
 {% block title %}Modifier une news - Décibels{% endblock %}
 
@@ -24,11 +24,12 @@
 {% endblock fileUpload_widget %}
 
 {% block body %}
-    <h1>News edit</h1>
-
-    {{ form(edit_form) }}
-
-        <a href="{{ path('decibels_news_listAdmin') }}">Retourner à la liste</a>
+    <div class="card">
+		<div class="card-content">
+			<h4 class="text-center">Modifier une news</h4>
+			{{ form(edit_form) }}
+		</div>
+	</div>
 {% endblock %}
 
 {% block javascript %}

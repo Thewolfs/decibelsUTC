@@ -1,4 +1,4 @@
-{% extends "::layout.html.twig" %}
+{% extends "::layoutAdmin.html.twig" %}
 
 {% block title %}Nos Formations - Décibels{% endblock title %}
 
@@ -31,12 +31,10 @@
 {% endblock fileUpload_widget %}
 
 {% block body %}
-	<div class="row">
-        <div class="col-md-12 card">
-            <div class="card-content">
-				<h4 class="text-center">Ajouter une formation</h4>
-				{{ form(form) }}
-			</div>
+    <div class="card">
+        <div class="card-content">
+            <h4 class="text-center">Ajouter une formation</h4>
+            {{ form(form) }}
         </div>
     </div>
 {% endblock body %}
@@ -48,10 +46,8 @@
         var $loadingBar = $this.siblings('.progress').children();
         var $fileName = $("#file_name");
         var $input = $('#file_id');
-		console.log($input);
 
         var file = $this[0].files[0];
-		$fileName.text(file.name);
         var baseUrl = "{{ asset('') }}";
         $loadingBar.parent().removeClass('hidden');
         
@@ -78,8 +74,9 @@
             success: function(response){
                 $loadingBar
                     .css('width', '100%').parent().fadeOut(100);
-                $input.val(response.id);                 
-                 $('button[type="submit"]').removeClass('hidden');                 
+                $input.val(response.id);
+		        $fileName.text(file.name);             
+                $('button[type="submit"]').removeClass('hidden');                 
                 
                 $this.remove();
             },

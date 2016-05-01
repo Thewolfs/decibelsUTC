@@ -1,13 +1,17 @@
-{% extends '::layout.html.twig' %}
+{% extends '::layoutAdmin.html.twig' %}
 
 {% block title %}Supprimer une news - Décibels{% endblock %}
 
 {% block body %}
-
-	<p>Êtes-vous sur de vouloir supprimer la news {{ news.title }} ?</p>
-	<form action="{{ path('decibels_news_delete', {'id' : news.id }) }}" method="POST">
-		<input type="submit" value="Supprimer" />
-		{{ form_rest(form) }}
-	</form>
+	<div class="card">
+		<div class="card-content">
+			<h4 class="text-center">Supprimer une news</h4>
+			<p>Êtes-vous sur de vouloir supprimer la news {{ news.title }} ?</p>
+			<form action="{{ path('decibels_news_delete', {'id' : news.id }) }}" method="POST">
+				<input type="submit" value="Supprimer" />
+				{{ form_rest(form) }}
+			</form>
+		</div>
+	</div>
 	
 {% endblock %}

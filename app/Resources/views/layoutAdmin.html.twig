@@ -160,6 +160,10 @@
 				</footer>
 				{{ tinymce_init() }}
 				<script>
+					$(".form-control:not(checkbox, radio, select)").each(function () {
+						$("label[for='" + this.id + "']").addClass("hidden");
+					});
+					
 					$(".nav > li > .fa-play-circle").click(function () {
 						if($("#player").is(":visible")) {
 							$("#player").fadeOut(400);
@@ -274,12 +278,15 @@
 					});
 					
 					
-					$(".form-control").focus(function () {
-						$("label[for='" + this.id + "']").removeClass("hidden");
-						$("label[for='" + this.id + "']").fadeIn(100);
-					}).blur(function () {
-						$("label[for='" + this.id + "']").fadeOut(100);
-					})
+					$(".form-control:not(checkbox, radio, select)").keyup(function () {
+						if(this.value) {
+							$("label[for='" + this.id + "']").removeClass("hidden");
+							$("label[for='" + this.id + "']").fadeIn(100);
+						}
+						else {
+							$("label[for='" + this.id + "']").fadeOut(100);
+						}
+					});
 					
 					$(".menu-button").click(function(e) {
 						e.stopPropagation();

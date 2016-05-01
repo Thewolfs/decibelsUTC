@@ -1,13 +1,17 @@
-{% extends '::layout.html.twig' %}
+{% extends '::layoutAdmin.html.twig' %}
 
 {% block title %}Supprimer une réalisation - Décibels{% endblock %}
 
 {% block body %}
-
-	<p>Êtes-vous sur de vouloir supprimer la réalisation {{ achievement.nom }} ?</p>
-	<form action="{{ path('decibels_achievement_delete', {'id' : achievement.id }) }}" method="POST">
-		<input type="submit" value="Supprimer" />
-		{{ form_rest(form) }}
-	</form>
+	<div class="card">
+		<div class="card-content">
+			<h4>Supprimer une réalisation</h4>
+			<p>Êtes-vous sur de vouloir supprimer la réalisation {{ achievement.nom }} ?</p>
+			<form action="{{ path('decibels_achievement_delete', {'id' : achievement.id }) }}" method="POST">
+				<input type="submit" value="Supprimer" />
+				{{ form_rest(form) }}
+			</form>
+		</div>
+	</div>
 	
 {% endblock %}

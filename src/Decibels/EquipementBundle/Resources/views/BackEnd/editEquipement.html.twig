@@ -1,7 +1,28 @@
-{% extends '::layout.html.twig' %}
+{% extends '::layoutAdmin.html.twig' %}
 
 {% block title %}Modifier du matériel - Décibels{% endblock %}
 
 {% block body %}
-	{{ form(form) }}
+	<div class="card">
+		<div class="card-content">
+			<h4 class="text-center">Ajouter du matériel</h4>
+			{{ form_start(form) }}
+				{{ form_errors(form) }}
+				
+				{{ form_row(form.nom) }}
+				
+				{{ form_row(form.type) }}
+				
+				{{ form_row(form.description) }}
+				<div class="row">
+					<div class="col-md-6">
+					{{ form_row(form.prix) }}
+					</div>
+					<div class="col-md-6">
+					{{ form_row(form.maxNum) }}
+					</div>
+				</div>
+			{{ form_end(form) }}
+		</div>
+	</div>
 {% endblock %}

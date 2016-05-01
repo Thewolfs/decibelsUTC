@@ -1,18 +1,16 @@
-{% extends "::layout.html.twig" %}
+{% extends "::layoutAdmin.html.twig" %}
 
 {% block title %}Nos Formations - Décibels{% endblock title %}
 
 {% block body %}
-	<div class="row">
-        <div class="col-md-12 card">
-            <div class="card-content">
-				<h4>Supprimer une formation</h4>
-                    <p>Êtes-vous sur de vouloir supprimer cette formation ?</p>
-                    <form action="{{ path('decibels_training_delete', {'id' : training.id }) }}" method="POST">
-                        <input type="submit" value="Supprimer" />
-                        {{ form_rest(form) }}
-                    </form>
-			</div>
+    <div class="card">
+        <div class="card-content">
+            <h4>Supprimer une formation</h4>
+                <p>Êtes-vous sur de vouloir supprimer cette formation ?</p>
+                <form action="{{ path('decibels_training_delete', {'id' : training.id }) }}" method="POST">
+                    <input type="submit" value="Supprimer" />
+                    {{ form_rest(form) }}
+                </form>
         </div>
     </div>
 {% endblock body %}

@@ -1,0 +1,25 @@
+{% extends '::layoutAdmin.html.twig' %}
+
+{% form_theme form _self %}
+
+{% block textarea_widget %}
+	{% spaceless %}
+		<textarea class="form-control" {{ block('widget_attributes') }}>{{ value }}</textarea>
+	{% endspaceless %}
+{% endblock textarea_widget %}
+
+{% block title %}Supprimer du matériel - Décibels{% endblock %}
+
+{% block body %}
+	<div class="card">
+		<div class="card-content">
+			<h4>Supprimer du matériel</h4>
+			<p>Êtes-vous sur de vouloir supprimer le matériel {{ equipement.nom }} ?</p>
+			<form action="{{ path('decibels_equipement_delete', {'id' : equipement.id }) }}" method="POST">
+				<input type="submit" value="Supprimer" />
+				{{ form_rest(form) }}
+			</form>
+		</div>
+	</div>
+	
+{% endblock %}

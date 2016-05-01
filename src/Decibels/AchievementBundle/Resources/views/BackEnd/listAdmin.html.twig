@@ -1,21 +1,25 @@
-{% extends '::layout.html.twig' %}
+{% extends '::layoutAdmin.html.twig' %}
 
 {% block title %}Modifier / Supprimer une réalisation - Décibels{% endblock %}
 
 {% block body %}
-	<h2 class="text-center">Modifier / Supprimer une réalisation</h2>
-	<table class="table-bordered">
-	<tr class="row" style="font-size: 18px; color: #FFEB3B; background-color: #591820;">
-		<th class="col-md-10">Nom</th>
-		<th class="col-md-1"></th>
-		<th class="col-md-1"></th>
-	</tr>
-	{% for rea in listRea %}
-		<tr class="row">
-			<td class="col-md-10">{{ rea.nom }}</td>
-			<td class="col-md-1 text-center"><a style="color: #591820;" href="{{ path('decibels_achievement_edit', {'id': rea.id }) }}"><span class="glyphicon glyphicon-edit"></span></a></td>
-			<td class="col-md-1 text-center"><a style="color: #591820;" href="{{ path('decibels_achievement_delete', {'id': rea.id }) }}"><span class="glyphicon glyphicon-remove"></span></a></td>
-		</tr>
-	{% endfor %}
-	</table>
+	<div class="card">
+		<div class="card-content">
+			<h4 class="text-center">Modifier / Supprimer une réalisation</h4>
+			<table class="table-bordered">
+			<tr class="row" style="font-size: 18px; color: #FFEB3B; background-color: #591820;">
+				<th class="col-md-10">Nom</th>
+				<th class="col-md-1"></th>
+				<th class="col-md-1"></th>
+			</tr>
+			{% for achievement in listAchievement %}
+				<tr class="row">
+					<td class="col-md-10">{{ achievement.nom }}</td>
+					<td class="col-md-1 text-center"><a style="color: #591820;" href="{{ path('decibels_achievement_edit', {'id': achievement.id }) }}"><span class="glyphicon glyphicon-edit"></span></a></td>
+					<td class="col-md-1 text-center"><a style="color: #591820;" href="{{ path('decibels_achievement_delete', {'id': achievement.id }) }}"><span class="glyphicon glyphicon-remove"></span></a></td>
+				</tr>
+			{% endfor %}
+			</table>
+		</div>
+	</div>
 {% endblock %}

@@ -1,21 +1,25 @@
-{% extends '::layout.html.twig' %}
+{% extends '::layoutAdmin.html.twig' %}
 
 {% block title %}Modifier / Supprimer une formation- Décibels{% endblock %}
 
 {% block body %}
-	<h2 class="text-center">Modifier / Supprimer une formation</h2>
-	<table class="table-bordered">
-	<tr class="row" style="font-size: 18px; color: #FFEB3B; background-color: #591820;">
-		<th class="col-md-10">Nom</th>
-		<th class="col-md-1"></th>
-		<th class="col-md-1"></th>
-	</tr>
-	{% for training in listTraining %}
-		<tr class="row">
-			<td class="col-md-10">{{ training.titre }}</td>
-			<td class="col-md-1 text-center"><a style="color: #591820;" href="{{ path('decibels_training_edit', {'id': training.id }) }}"><span class="glyphicon glyphicon-edit"></a></span></td>
-			<td class="col-md-1 text-center"><a style="color: #591820;" href="{{ path('decibels_training_delete', {'id': training.id }) }}"><span class="glyphicon glyphicon-remove"></a></span></td>
-		</tr>
-	{% endfor %}
-	</table>
+	<div class="card">
+		<div class="card-content">
+			<h4 class="text-center">Modifier / Supprimer une formation</h4>
+			<table class="table-bordered">
+			<tr class="row" style="font-size: 18px; color: #FFEB3B; background-color: #591820;">
+				<th class="col-md-10">Nom</th>
+				<th class="col-md-1"></th>
+				<th class="col-md-1"></th>
+			</tr>
+			{% for training in listTraining %}
+				<tr class="row">
+					<td class="col-md-10">{{ training.titre }}</td>
+					<td class="col-md-1 text-center"><a style="color: #591820;" href="{{ path('decibels_training_edit', {'id': training.id }) }}"><span class="glyphicon glyphicon-edit"></a></span></td>
+					<td class="col-md-1 text-center"><a style="color: #591820;" href="{{ path('decibels_training_delete', {'id': training.id }) }}"><span class="glyphicon glyphicon-remove"></a></span></td>
+				</tr>
+			{% endfor %}
+			</table>
+		</div>
+	</div>
 {% endblock %}

@@ -15,14 +15,23 @@ class TrainingType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('titre', null, array('attr' => array(
-				'placeholder' => 'Titre de la formation'
-			)))
-            ->add('description', null, array('attr' => array(
-				'placeholder' => 'Description de la formation',
-				'rows' => 5
-			)))
+            ->add('titre', null, array(
+                'label' => 'Titre de la formation',
+                'label_attr' => array("class" => 'hidden'),
+                'attr' => array(
+				    'placeholder' => 'Titre de la formation'
+			    )
+            ))
+            ->add('description', null, array(
+                'label' => 'Description',
+                'label_attr' => array("class" => 'hidden'),
+                'attr' => array(
+                    'placeholder' => 'Description de la formation',
+                    'rows' => 5
+			    )
+            ))
             ->add('type', 'choice', array(
+                'label' => 'Pôle',
 				'choices'  => array(
 					'Sono' => 0,
 					'Light' => 1,
@@ -30,9 +39,7 @@ class TrainingType extends AbstractType
 				),
 				'choices_as_values' => true,
 				'label' => false,
-				'attr' => array(
-					'placeholder' => 'Type'
-			)))
+			))
             ->add('file', 'fileUpload')
 			->add('Ajouter', 'submit')
         ;

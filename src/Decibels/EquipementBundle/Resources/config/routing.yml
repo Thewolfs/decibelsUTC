@@ -15,6 +15,11 @@ decibels_equipement_showSpecifics:
     defaults: { _controller: DecibelsEquipementBundle:FrontEnd:showSpecifics }
     methods: [POST]
 
+decibels_equipement_listAdmin:
+    path:     /decibels/admin/equipement/list
+    defaults: { _controller: DecibelsEquipementBundle:BackEnd:listAdmin }
+    methods: [GET]
+
 decibels_equipement_add:
     path:     /decibels/admin/equipement/add
     defaults: { _controller: DecibelsEquipementBundle:BackEnd:addEquipement }

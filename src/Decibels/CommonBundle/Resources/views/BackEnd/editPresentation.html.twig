@@ -1,10 +1,13 @@
-{% extends '::layout.html.twig' %}
+{% extends '::layoutAdmin.html.twig' %}
 
 {% block title %}Modifier la présentation - Décibels{% endblock %}
 
 {% block body %}
-	<h2 class="text-center">Modifier la présentation</h2>
-	<div class="well" style="color: #000000; padding: 5px;">
-		{{ form(form) }}
+	<div class="card">
+		<div class="card-content">
+			<h4 class="text-center">Modifier la présentation</h4>
+			{{ form(form) }}
+		</div>
 	</div>
+	
 {% endblock %}

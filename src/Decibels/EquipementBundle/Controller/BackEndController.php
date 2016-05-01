@@ -12,6 +12,14 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 class BackEndController extends Controller
 {	
+	public function listAdminAction(Request $request) {
+		$repository = $this->getDoctrine()->getManager()->getRepository('DecibelsEquipementBundle:Equipement');
+		
+		$listEquipement = $repository->findAll();
+		
+		return $this->render('DecibelsEquipementBundle:BackEnd:listAdmin.html.twig', array('equipements' => $listEquipement));
+	}
+	
 	public function addEquipementAction(Request $request) {
 		$equipement = new Equipement();
 		$form = $this->get('form.factory')->create(new EquipementType(), $equipement);
