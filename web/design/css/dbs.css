@@ -30,6 +30,22 @@ body {
     }
 }
 
+@media (min-width: 768px) {
+  .carousel-inner {
+    height: 480px;
+  }
+}
+@media (min-width: 992px) {
+  .carousel-inner {
+    height: 627px;
+  }
+}
+@media (min-width: 1200px) {
+  .carousel-inner {
+    height: 760px;
+  }
+}
+
 .primary-nav {
     width: 100px;
     z-index: 999;
