@@ -16,29 +16,29 @@ body {
 
 @media (min-width: 768px) {
   #output, #preview {
-    height: 452px;
+    height: 399px;
   }
   
   .carousel-inner {
-    height: 480px;
+    height: 424px;
   }
 }
 @media (min-width: 992px) {
   #output, #preview {
-    height: 599px;
+    height: 529px;
   }
   
   .carousel-inner {
-    height: 627px;
+    height: 553px;
   }
 }
 @media (min-width: 1200px) {
   #output, #preview {
-    height: 732px;
+    height: 646px;
   }
   
   .carousel-inner {
-    height: 760px;
+    height: 671px;
   }
 }
 
@@ -318,6 +318,7 @@ main {
 
 .carousel-inner > .item > img {
     width: 100%;
+    position: relative;
 }
 
 .table-hover > tbody {
