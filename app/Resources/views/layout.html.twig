@@ -246,7 +246,6 @@
 											return xhr;
 										},
 										success: function (data) {
-											$("#overlayBox > .card > .card-content > .card-button").removeClass("hidden");
 											$("#overlaySpinner").addClass("hidden");
 											if(data.success) {
 												$("#overlayContent").html("<h4>Demande envoyée</h4>");
@@ -255,10 +254,11 @@
 												("#overlayContent").html("<h4>Problème d'envoi, veuillez réessayer plus tard</h4>");
 											}
 										}
-									})
-								})
+									});
+									return false;
+								});
 							}
-						})
+						});
 					});
 					
 					
