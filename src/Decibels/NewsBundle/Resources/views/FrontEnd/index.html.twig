@@ -21,7 +21,7 @@
 			<div class="carousel-inner" role="listbox">
 			{% for img in listImg %}
 				<div class="item">
-					<img class="img-responsive" src="{{ asset('uploads/carrousel/' ~ img.picture.name) }}" alt="carrousel-{{ loop.index }}"/>
+					<img class="img-responsive" src="{{ asset('uploads/carrousel/' ~ img.picture.name) }}" alt="carrousel-{{ loop.index }}" style="top: {{ img.topClip }}px;"/>
 				</div>
 			{% endfor %}
 			</div>

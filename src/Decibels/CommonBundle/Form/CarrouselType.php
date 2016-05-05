@@ -19,8 +19,6 @@ class CarrouselType extends AbstractType
             ->add('picture', 'fileUpload', array(
                  'label' => false
             ))
-            ->add('zoom', 'hidden')
-            ->add('ratio', 'hidden')
             ->add('leftClip', 'hidden')
             ->add('topClip', 'hidden');
     }
