@@ -3,31 +3,44 @@
 {% block title %}Admin - Décibels{% endblock %}
 
 {% block body %}
-	<h2 class="text-center">Administration</h2>
-	<div class="row" style="padding: 5px;">
-		<ul class="col-md-6" style="height: 200px;">
-			<li class="text-center" style="list-style: none;"><h3>Général</h3></li>
-				<li><a href="{{ path('decibels_presentation_edit') }}">Modifier la présentation</a></li>
-				<li><a href="{{ path('decibels_achievement_add') }}">Ajouter une réalisation</a></li>
-				<li><a href="{{ path('decibels_achievement_listAdmin') }}">Modifier / Supprimer une réalisation</a></li>
-		</ul>
-		<ul class="col-md-6" style="height: 200px;">
-			<li class="text-center" style="list-style: none;"><h3>News</h3></li>
-			<li><a href="{{ path('decibels_news_new') }}">Ajouter une news</a></li>
-			<li><a href="{{ path('decibels_news_listAdmin') }}">Modifier / Supprimer une news</a></li>
-		</ul>
+	<div class="col-md-12 card-panel text-center">
+		<h2>Bienvenue sur l'interface d'administration du site web de Décibels UTC</h2>
+		<h5>Vous trouverez dans le menu sur la gauche tous les liens nécessaires à la modification du site web</h5>
 	</div>
-	<div class="row" style="padding: 5px;">	
-		<ul class="col-md-6" style="height: 200px;">
-			<li class="text-center" style="list-style: none;"><h3>Matériel</h3></li>
-			<li><a href="{{ path('decibels_equipement_list') }}">Liste du matériel</a></li>
-			<li><a href="{{ path('decibels_equipement_add') }}">Ajouter du matériel</a></li>
-			<li><a href="{{ path('decibels_equipement_list') }}">Modifier / Supprimer une fiche matériel</a></li>
-		</ul>
-		<ul class="col-md-6" style="height: 200px;">
-			<li class="text-center" style="list-style: none;"><h3>Carrousel</h3></li>
-			<li><a href="{{ path('decibels_carrousel_addImage') }}">Ajouter une image</a></li>
-			<li><a href="{{ path('decibels_carrousel_changeImage') }}">Modifier les images</a></li>
-		</ul>
+	<div class="spacer col-md-12">Le détail ...</div>
+	<div class="col-md-12 card">
+		<div class="card-content">
+			<h4 class="text-center">Le carrousel</h4>
+			Le carrousel est le module permettant l'affichage d'image au premier plan sur la page d'accueil.
+			Les liens nécessaires à la modulation se trouvent sous l'onglet "Général".
+		</div>
+	</div>
+	<div class="col-md-12 card">
+		<div class="card-content">
+			<h4 class="text-center">Les news</h4>
+			Les news correspondent aux actualités liés aux différents évènements. Elles sont toutes affichées sous forme de résumé sur la page d'accueil.
+			Il est possible d'en créer, d'en modifier via un éditeur de texte inclus sur le site. Les liens correspondant se trouvent dans l'onglet "News".
+		</div>
+	</div>
+	<div class="col-md-12 card">
+		<div class="card-content">
+			<h4 class="text-center">Les réalisations</h4>
+			Contrairement aux news, les réalisations correspondent à un résumé bref des évènements ou des musiques studio réalisées. Attention, si le sujet concerne une
+			musique réalisée en studio, il est impératif de mettre un lien vers la musique hébergé sur Soundclound.
+		</div>
+	</div>
+	<div class="col-md-12 card">
+		<div class="card-content">
+			<h4 class="text-center">Le matériel</h4>
+			Ce module correspond à un inventaire du matériel louable par Décibels aux membres cottisants de l'UTC. Chaque fiche de matériel contient un descriptif détaillé
+			du sujet en plus de la caution et du nombre total d'objets mis à disposition.
+		</div>
+	</div>
+	<div class="col-md-12 card">
+		<div class="card-content">
+			<h4 class="text-center">Les formations</h4>
+			Au regard de notre engagements avec Sorbonne Université, il est indispensable de mettre en ligne des formations. Elles se présentes sous la forme d'un upload d'un fichier
+			lisible par le plus grand nombre (PDF, Word, PPT, etc.) et d'un descriptif rapide permettant à un utilisateur de savoir quelle formation télécharger.
+		</div>
 	</div>
 {% endblock %}
