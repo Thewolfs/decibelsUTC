@@ -25,17 +25,20 @@ class FrontEndController extends Controller
 		$data = array();
 		$form = $this->createFormBuilder($data, array('attr' => array('id' => 'form-contact')))
 					 ->add('email', 'email', array(
-						 'label' => 'Votre e-mail', 
+						 'label' => 'Votre e-mail',
+						 'label_attr' => array("class" => "hidden"), 
 						 'attr' => array(
 						 	'placeholder' => 'Votre e-mail'
 					 )))
 					 ->add('sujet', 'text', array(
-						 'label' => 'Sujet', 
+						 'label' => 'Sujet',
+						 'label_attr' => array("class" => "hidden"), 
 						 'attr' => array(
 						 	'placeholder' => 'Sujet'
 					 )))
 					 ->add('demande', 'textarea', array(
-						 'label' => 'Votre demande', 
+						 'label' => 'Votre demande',
+						 'label_attr' => array("class" => "hidden"), 
 						 'attr' => array(
 						 	'placeholder' => 'Votre demande',
 							'rows' => 5
