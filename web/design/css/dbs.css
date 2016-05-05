@@ -18,15 +18,27 @@ body {
   #output, #preview {
     height: 452px;
   }
+  
+  .carousel-inner {
+    height: 480px;
+  }
 }
 @media (min-width: 992px) {
   #output, #preview {
     height: 599px;
   }
+  
+  .carousel-inner {
+    height: 627px;
+  }
 }
 @media (min-width: 1200px) {
   #output, #preview {
     height: 732px;
+  }
+  
+  .carousel-inner {
+    height: 760px;
   }
 }
 
@@ -44,22 +56,6 @@ body {
     .primary-nav {
         display: none;
     }
-}
-
-@media (min-width: 768px) {
-  .carousel-inner {
-    height: 480px;
-  }
-}
-@media (min-width: 992px) {
-  .carousel-inner {
-    height: 627px;
-  }
-}
-@media (min-width: 1200px) {
-  .carousel-inner {
-    height: 760px;
-  }
 }
 
 .primary-nav {
